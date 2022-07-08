@@ -2972,6 +2972,13 @@ footer.site-footer {
     }
 }
 
+/* Others */
+.validation-summary-errors > dl, ol, ul, li {
+    list-style: none;
+    padding: 0;
+}
+
+
 @media (max-width: 1024px) {
     .open aside.left-panel {
         width: 280px;

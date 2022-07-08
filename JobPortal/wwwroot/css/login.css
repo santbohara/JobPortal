@@ -1,3 +1,15 @@
 ﻿.content {
     padding: 7rem 0;
 }
+/* Others */
+.validation-summary-errors {
+    padding: 0 5px;
+    margin: 5px 0;
+    background: #dc3545;
+    color: white;
+    border-radius: 5px;
+}
+.validation-summary-errors > dl, ol, ul, li {
+    list-style: none;
+    padding: 2px 0;
+}
