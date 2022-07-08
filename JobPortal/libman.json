@@ -1,0 +1,76 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "popper.js@1.14.4",
+      "destination": "wwwroot/lib/popper.js/",
+      "files": [
+        "umd/popper.min.js"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "bootstrap@4.1.3",
+      "destination": "wwwroot/lib/bootstrap/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "font-awesome@4.7.0",
+      "destination": "wwwroot/font-awesome/",
+      "files": [
+        "css/font-awesome.css",
+        "css/font-awesome.css.map",
+        "css/font-awesome.min.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.svg",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.woff2",
+        "fonts/FontAwesome.otf",
+        "less/animated.less",
+        "less/bordered-pulled.less",
+        "less/core.less",
+        "less/fixed-width.less",
+        "less/font-awesome.less",
+        "less/icons.less",
+        "less/larger.less",
+        "less/list.less",
+        "less/mixins.less",
+        "less/path.less",
+        "less/rotated-flipped.less",
+        "less/screen-reader.less",
+        "less/stacked.less",
+        "less/variables.less",
+        "scss/font-awesome.scss",
+        "scss/_animated.scss",
+        "scss/_bordered-pulled.scss",
+        "scss/_core.scss",
+        "scss/_fixed-width.scss",
+        "scss/_icons.scss",
+        "scss/_larger.scss",
+        "scss/_list.scss",
+        "scss/_mixins.scss",
+        "scss/_path.scss",
+        "scss/_rotated-flipped.scss",
+        "scss/_screen-reader.scss",
+        "scss/_stacked.scss",
+        "scss/_variables.scss",
+        ".npmignore",
+        "package.json"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "jquery-match-height@0.7.2",
+      "destination": "wwwroot/jquery-match-height/",
+      "files": [
+        "jquery.matchHeight.min.js"
+      ]
+    },
+    {
+      "library": "bootstrap@5.1.3",
+      "destination": "wwwroot/bootstrap/"
+    }
+  ]
+}

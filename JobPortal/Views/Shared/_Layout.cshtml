@@ -3,28 +3,112 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - JobSanjal</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <title>@ViewData["Title"] - eJob Portal</title>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/bootsrapV5.2.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/site.css" />
 
 </head>
 <body>
-    <partial name="_LoginPartial" ></partial>
-    <div class="body flex-grow-1 px-3">
-        <div class="container-lg">
+
+    <!-- Left Panel -->
+    <partial name="_SideBar"></partial>
+
+    <!-- /#left-panel -->
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <header id="header" class="header">
+
+            <div class="top-left">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand" href="/"><img src="~/static/logo2.png"></a>
+                    <a class="navbar-brand hidden" href="/"><img src="~/static/logoSmall.png" alt="Logo"></a>
+                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                </div>
+            </div>
+
+            <div class="top-right">
+
+                <div class="header-menu">
+
+                    <div class="header-left">
+
+                        <div class="user-area dropdown float-right">
+
+                            <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="user-avatar rounded-circle" src="~/static/profile-img.jpg">
+                            </a>
+
+                            <div class="user-menu dropdown-menu">
+                                <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                                <a class="nav-link" href="#" onclick="myFunction()"><i class="fa fa-power -off"></i>Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="form-inline" id="logOutForm" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Dashboard", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </header>
+        <!-- /#header -->
+
+        <!-- Breadcrumbs -->
+        <div class="row m-0">
+            <div class="page-header">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">UI Elements</a></li>
+                        <li class="active">Cards</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.Breadcrumbs -->
+
+        <!-- Content -->
+        <div class="content">
             @RenderBody()
         </div>
+        <!-- /.content -->
+
+        <div class="clearfix"></div>
+
+        <!-- Footer -->
+        <footer class="site-footer p-0">
+            <div class="footer-inner bg-white d-flex justify-content-between">
+                <div class="">
+                    Copyright &copy; 2022 e-Job Portal
+                </div>
+                <div class="">
+                    Designed by <a href="" class="text-primary">Sant Bohara</a>
+                </div>
+            </div>
+        </footer>
+        <!-- /.site-footer -->
+
     </div>
+    <!-- /#right-panel -->
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/jquery-match-height/jquery.matchHeight.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        function myFunction() {
+            document.getElementById("logOutForm").submit();
+        }
+    </script>
 </body>
 
 

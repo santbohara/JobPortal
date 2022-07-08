@@ -3,6 +3,11 @@
     Layout = "/Views/Shared/_LoginLayout.cshtml";
     ViewData["Title"] = "Login";
 }
+<style>
+    .login-brand img{
+        max-width: 200px;
+    }
+</style>
 <div class="content">
 
     <div class="container">
@@ -19,6 +24,9 @@
 
                     @Html.ValidationSummary()
 
+                    <div class="login-brand d-flex justify-content-center mb-4">
+                        <a class="navbar-brand" href="/"><img src="~/static/logo2.png"></a>
+                    </div>
                     <div class="col-md-8 border shadow-sm bg-light p-4 rounded-3">
 
                         <div class="mb-4">
@@ -39,7 +47,7 @@
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </div>
                             <div class="mt-3">
-                                <a href="#" class="text-primary">Forgot Password?</a>
+                                <a href="#" class="nav-link text-primary">Forgot Password?</a>
                             </div>
                         </form>
                     </div>
