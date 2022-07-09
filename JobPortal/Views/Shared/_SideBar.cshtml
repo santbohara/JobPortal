@@ -4,7 +4,7 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed @(ViewData["ActiveNav"] == "Dashboard" ? "show" : "")" href="/">
-                <i class="fa fa-tachometer"></i>
+                <i class="bi bi-speedometer2 fs-5"></i>
                 <span>Dashboard</span>
             </a>
         </li>
@@ -12,13 +12,13 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#jobs-nav" data-bs-toggle="collapse" href="#">
-                <i class="fa fa-suitcase"></i>
+                <i class="bi bi-briefcase"></i>
                 <span>Jobs</span>
                 <i class="fa fa-angle-down ms-auto"></i>
             </a>
             <ul id="jobs-nav" class="nav-content collapse @(ViewData["ActiveNav"] == "Jobs" ? "show" : "")" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-controller="Jobs" asp-action="Index" class="nav-link">
+                    <a asp-area="" asp-controller="Jobs" asp-action="Index" class="nav-link">
                         <i class="fa fa-caret-right"></i>
                         <span>Add Job</span>
                     </a>
@@ -35,13 +35,13 @@
         
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#users-nav" data-bs-toggle="collapse" href="#">
-                <i class="fa fa-users"></i>
+                <i class="bi bi-people"></i>
                 <span>Users</span>
                 <i class="fa fa-angle-down ms-auto"></i>
             </a>
             <ul id="users-nav" class="nav-content collapse @(ViewData["ActiveNav"] == "Users" ? "show" : "")" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-controller="" asp-action="" class="nav-link">
+                    <a asp-area="" asp-controller="" asp-action="" class="nav-link">
                         <i class="fa fa-caret-right"></i>
                         <span>Add User</span>
                     </a>
@@ -49,7 +49,7 @@
             </ul>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-controller="" asp-action="" class="nav-link">
+                    <a asp-area="" asp-controller="" asp-action="" class="nav-link">
                         <i class="fa fa-caret-right"></i>
                         <span>Manage User</span>
                     </a>
@@ -60,13 +60,13 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#config-nav" data-bs-toggle="collapse" href="#">
-                <i class="fa fa-cog"></i>
+                <i class="bi bi-gear"></i>
                 <span>Config</span>
                 <i class="fa fa-angle-down ms-auto"></i>
             </a>
             <ul id="config-nav" class="nav-content collapse @(ViewData["ActiveNav"] == "Config" ? "show" : "")" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-controller="Config" asp-action="Index" class="nav-link">
+                    <a asp-area="Config" asp-controller="JobConfig" asp-action="Index" class="nav-link">
                         <i class="fa fa-caret-right"></i>
                         <span>Job Config</span>
                     </a>

@@ -6,7 +6,8 @@
     <title>@ViewData["Title"] - eJob Portal</title>
 
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icon/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.min.css">
 
@@ -33,13 +34,13 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="~/static/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2">Sant</span>
                     </a>
                     <!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
+                            <h6>Sant Bohara</h6>
                             <span>Web Designer</span>
                         </li>
                         <li>
@@ -69,9 +70,10 @@
             </ul>
             <form class="form-inline"
                   id="logOutForm"
-                  asp-controller="Account"
-                  asp-action="Logout"
-                  asp-route-returnUrl="@Url.Action("Index", "Dashboard", new { area = "" })">
+                  asp-area="" 
+                  asp-controller="Account" 
+                  asp-action="Logout" 
+            >
             </form>
         </nav>
         <!-- End Icons Navigation -->
@@ -86,7 +88,7 @@
     <!-- ======= Main ======= -->
     <main id="main" class="main">
 
-        <section class="section">
+        <section class="section" style="min-height: 700px;">
             @RenderBody()
         </section>
 
@@ -95,13 +97,10 @@
 
         <!-- Footer -->
         <footer class="site-footer p-0">
-            <div class="footer-inner d-flex justify-content-between">
-                <div class="">
-                    Copyright &copy; 2022 e-Job Portal
-                </div>
-                <div class="">
-                    Designed by <a href="" class="text-primary">Sant Bohara</a>
-                </div>
+            <div class="footer-inner d-flex justify-content-end">
+                <small class="text-black-50">
+                    Designed by <a href="" class="text-black-50">Sant Bohara</a>
+                </small>
             </div>
         </footer>
         <!-- /.site-footer -->
