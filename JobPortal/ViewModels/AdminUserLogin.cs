@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JobSanjal.ViewModels
+namespace JobPortal.ViewModels
 {
     public class AdminUserLogin
     {

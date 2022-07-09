@@ -6,14 +6,14 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JobSanjal.Models;
+using JobPortal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace JobSanjal.Areas.Identity.Pages.Account
+namespace JobPortal.Areas.Identity.Pages.Account
 {
     public class ConfirmEmailModel : PageModel
     {

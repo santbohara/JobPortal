@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-JobSanjal-0CDBD1A7-1044-4D96-B98C-32BAFAFD91E9</UserSecretsId>
+    <UserSecretsId>aspnet-JobPortal-0CDBD1A7-1044-4D96-B98C-32BAFAFD91E9</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

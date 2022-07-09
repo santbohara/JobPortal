@@ -1,4 +1,7 @@
-﻿.content {
+﻿body {
+    background: #f1f2f7;
+}
+.content {
     padding: 7rem 0;
 }
 /* Others */

@@ -1,9 +1,9 @@
-﻿using JobSanjal.Models;
+﻿using JobPortal.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace JobSanjal.Data
+namespace JobPortal.Data
 {
     public class ApplicationDbContext : IdentityDbContext<AdminUser>
     {
@@ -14,7 +14,6 @@ namespace JobSanjal.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.HasDefaultSchema("Admin");
             builder.Entity<AdminUser>(entity =>
             {
                 entity.ToTable(name: "User");
@@ -44,5 +43,9 @@ namespace JobSanjal.Data
                 entity.ToTable("UserTokens");
             });
         }
+
+        public DbSet<Jobs> Jobs { get; set; }
+        public DbSet<JobCategory> JobCategory { get; set; }
+
     }
 }

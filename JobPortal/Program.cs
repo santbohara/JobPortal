@@ -1,5 +1,5 @@
-using JobSanjal.Data;
-using JobSanjal.Models;
+using JobPortal.Data;
+using JobPortal.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

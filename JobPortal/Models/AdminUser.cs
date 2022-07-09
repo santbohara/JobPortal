@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace JobSanjal.Models
+namespace JobPortal.Models
 {
     public class AdminUser : IdentityUser
     {

@@ -1,9 +1,9 @@
-﻿using JobSanjal.Models;
+﻿using JobPortal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace JobSanjal.Controllers
+namespace JobPortal.Controllers
 {
     [Authorize]
     public class DashboardController : Controller

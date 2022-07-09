@@ -4,13 +4,13 @@
 
 using System;
 using System.Threading.Tasks;
-using JobSanjal.Models;
+using JobPortal.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace JobSanjal.Areas.Identity.Pages.Account.Manage
+namespace JobPortal.Areas.Identity.Pages.Account.Manage
 {
     public class TwoFactorAuthenticationModel : PageModel
     {

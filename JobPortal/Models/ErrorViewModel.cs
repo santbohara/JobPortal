@@ -1,4 +1,4 @@
-namespace JobSanjal.Models
+namespace JobPortal.Models
 {
     public class ErrorViewModel
     {

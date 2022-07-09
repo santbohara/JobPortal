@@ -1,0 +1,41 @@
+﻿@model JobPortal.ViewModels.JobsViewModel
+@{
+    ViewData["Title"] = "Add Job";
+    ViewData["ActiveNav"] = "Jobs";
+}
+
+<div class="col-md-5">
+
+    <div class="row">
+
+        <div class="card">
+
+            <div class="card-body">
+
+                <form>
+
+                    <div class="mb-3">
+                        <label asp-for="Title"></label>
+                        <input asp-for="Title" class="form-control">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Category"></label>
+                        <input asp-for="Category" class="form-control">
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="ExpireDate"></label>
+                        <input asp-for="ExpireDate" class="form-control">
+                        <span asp-validation-for="ExpireDate" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Next</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

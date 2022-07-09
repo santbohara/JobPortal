@@ -7,14 +7,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using JobSanjal.Models;
+using JobPortal.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace JobSanjal.Areas.Identity.Pages.Account.Manage
+namespace JobPortal.Areas.Identity.Pages.Account.Manage
 {
     public class EmailModel : PageModel
     {

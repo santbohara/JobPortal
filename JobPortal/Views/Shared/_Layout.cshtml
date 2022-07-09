@@ -5,84 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - eJob Portal</title>
 
-    <link rel="stylesheet" href="~/lib/bootstrap/bootsrapV5.2.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.min.css">
+
 
 </head>
 <body>
 
-    <!-- Left Panel -->
-    <partial name="_SideBar"></partial>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
 
-    <!-- /#left-panel -->
-    <!-- Right Panel -->
-    <div id="right-panel" class="right-panel">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                <img src="~/static/logo2.png" alt="">
+            </a>
+            <i class="fa fa-bars toggle-sidebar-btn"></i>
+        </div>
+        <!-- End Logo -->
 
-        <!-- Header-->
-        <header id="header" class="header">
+        <nav class="header-nav ms-auto">
 
-            <div class="top-left">
+            <ul class="d-flex align-items-center">
 
-                <div class="navbar-header">
+                <li class="nav-item dropdown pe-3">
 
-                    <a class="navbar-brand" href="/"><img src="~/static/logo2.png"></a>
-                    <a class="navbar-brand hidden" href="/"><img src="~/static/logoSmall.png" alt="Logo"></a>
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
-                </div>
-            </div>
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="~/static/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                    </a>
+                    <!-- End Profile Iamge Icon -->
 
-            <div class="top-right">
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>Kevin Anderson</h6>
+                            <span>Web Designer</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
 
-                <div class="header-menu">
-
-                    <div class="header-left">
-
-                        <div class="user-area dropdown float-right">
-
-                            <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="user-avatar rounded-circle" src="~/static/profile-img.jpg">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="/">
+                                <i class="fa fa-user"></i>
+                                <span>My Profile</span>
                             </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
 
-                            <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                <a class="nav-link" href="#" onclick="myFunction()"><i class="fa fa-power -off"></i>Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <form class="form-inline" id="logOutForm" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Dashboard", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#" onclick="logOut()">
+                                <i class="fa fa-sign-out"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
+            </ul>
+            <form class="form-inline"
+                  id="logOutForm"
+                  asp-controller="Account"
+                  asp-action="Logout"
+                  asp-route-returnUrl="@Url.Action("Index", "Dashboard", new { area = "" })">
             </form>
-        </header>
-        <!-- /#header -->
+        </nav>
+        <!-- End Icons Navigation -->
 
-        <!-- Breadcrumbs -->
-        <div class="row m-0">
-            <div class="page-header">
-                <div class="page-title">
-                    <ol class="breadcrumb text-right">
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">UI Elements</a></li>
-                        <li class="active">Cards</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-        <!-- /.Breadcrumbs -->
+    </header>
+    <!-- End Header -->
+    <!-- ======= Sidebar ======= -->
 
-        <!-- Content -->
-        <div class="content">
+    <partial name="_SideBar" />
+
+    <!-- End Sidebar-->
+    <!-- ======= Main ======= -->
+    <main id="main" class="main">
+
+        <section class="section">
             @RenderBody()
-        </div>
-        <!-- /.content -->
+        </section>
 
         <div class="clearfix"></div>
 
+
         <!-- Footer -->
         <footer class="site-footer p-0">
-            <div class="footer-inner bg-white d-flex justify-content-between">
+            <div class="footer-inner d-flex justify-content-between">
                 <div class="">
                     Copyright &copy; 2022 e-Job Portal
                 </div>
@@ -93,23 +106,21 @@
         </footer>
         <!-- /.site-footer -->
 
-    </div>
-    <!-- /#right-panel -->
+    </main>
+    <!-- End #main -->
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/lib/popper.js/umd/popper.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="~/jquery-match-height/jquery.matchHeight.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
     <script>
-        function myFunction() {
+        function logOut() {
             document.getElementById("logOutForm").submit();
         }
     </script>
 </body>
 
-
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/js/site.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </html>

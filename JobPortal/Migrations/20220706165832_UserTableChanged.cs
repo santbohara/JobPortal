@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace JobSanjal.Migrations
+namespace JobPortal.Migrations
 {
     public partial class UserTableChanged : Migration
     {

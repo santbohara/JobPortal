@@ -6,12 +6,12 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using JobSanjal.Models;
+using JobPortal.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace JobSanjal.Areas.Identity.Pages.Account.Manage
+namespace JobPortal.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {

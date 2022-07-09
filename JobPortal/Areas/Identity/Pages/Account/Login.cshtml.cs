@@ -14,9 +14,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using JobSanjal.Models;
+using JobPortal.Models;
 
-namespace JobSanjal.Areas.Identity.Pages.Account
+namespace JobPortal.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {

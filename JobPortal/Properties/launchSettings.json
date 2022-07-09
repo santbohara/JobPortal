@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "JobSanjal": {
+    "JobPortal": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

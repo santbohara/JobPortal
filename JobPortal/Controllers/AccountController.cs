@@ -1,11 +1,11 @@
-﻿using JobSanjal.Models;
-using JobSanjal.ViewModels;
+﻿using JobPortal.Models;
+using JobPortal.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace JobSanjal.Controllers
+namespace JobPortal.Controllers
 {
     public class AccountController : Controller
     {
