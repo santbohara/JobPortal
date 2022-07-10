@@ -1,4 +1,5 @@
-﻿using JobPortal.Models;
+﻿using JobPortal.Areas.Config.Models;
+using JobPortal.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

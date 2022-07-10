@@ -55,7 +55,10 @@ h1, h2, h3, h4, h5, h6 {
     margin: 15px 0 !important;
     display: inline-table !important;
 }
-
+.field-validation-error{
+    padding: 5px 0 !important;
+    display: block !important;
+}
 /*--------------------------------------------------------------
 # Page Title
 --------------------------------------------------------------*/

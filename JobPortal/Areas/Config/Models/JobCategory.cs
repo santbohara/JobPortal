@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JobPortal.Models
+namespace JobPortal.Areas.Config.Models
 {
     public class JobCategory
     {
