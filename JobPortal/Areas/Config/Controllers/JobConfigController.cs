@@ -24,7 +24,7 @@ namespace JobPortal.Areas.Config.Controllers
         {
             JobCategoryViewModel list = new()
             {
-                jobCategories = _db.JobCategory.ToList()
+                jobCategories = await _db.JobCategory.ToListAsync()
             };
 
             return View(list);
@@ -42,7 +42,7 @@ namespace JobPortal.Areas.Config.Controllers
                     {
                         Title = input.Title,
                         IsActive = input.IsActive,
-                        CreatedBy = User.Identity.Name,
+                        CreatedBy = User.Identity?.Name ?? "N/A",
                         CreatedAt = DateTime.Now
                     };
 

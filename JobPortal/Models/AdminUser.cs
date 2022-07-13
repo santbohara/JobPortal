@@ -7,7 +7,7 @@ namespace JobPortal.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Status { get; set; }
+        public bool IsActive { get; set; }
         public byte[]? ProfilePicture { get; set; }
     }
 }

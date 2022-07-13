@@ -41,15 +41,7 @@
             </a>
             <ul id="users-nav" class="nav-content collapse @(ViewData["ActiveNav"] == "Users" ? "show" : "")" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-area="" asp-controller="" asp-action="" class="nav-link">
-                        <i class="fa fa-caret-right"></i>
-                        <span>Add User</span>
-                    </a>
-                </li>
-            </ul>
-            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a asp-area="" asp-controller="" asp-action="" class="nav-link">
+                    <a asp-area="Users" asp-controller="User" asp-action="Index" class="nav-link">
                         <i class="fa fa-caret-right"></i>
                         <span>Manage User</span>
                     </a>

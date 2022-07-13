@@ -51,7 +51,7 @@ namespace JobPortal.Controllers
                         NormalizedUserName = request.Email,
                         Email = request.Email,
                         PhoneNumber = request.PhoneNumber,
-                        Status = "1",
+                        IsActive = true,
                         EmailConfirmed = true,
                         PhoneNumberConfirmed = true,
                     };

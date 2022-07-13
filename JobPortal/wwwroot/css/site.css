@@ -14,7 +14,8 @@
 
 body {
     font-family: "Open Sans", sans-serif;
-    background: #f6f9ff;
+    background: #f6f9ff !important;
+    background-color: #f6f9ff !important;
     color: #444444;
 }
 
@@ -54,6 +55,9 @@ h1, h2, h3, h4, h5, h6 {
 .dataTable {
     margin: 15px 0 !important;
     display: inline-table !important;
+}
+table.dataTable{
+    border-collapse: collapse !important;
 }
 .field-validation-error{
     padding: 5px 0 !important;

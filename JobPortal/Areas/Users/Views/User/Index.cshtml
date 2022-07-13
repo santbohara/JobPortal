@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Manager User";
+    ViewData["ActiveNav"] = "Users";
+}
+
+<div>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Dashboard</li>
+            <li class="breadcrumb-item">Users</li>
+            <li class="breadcrumb-item active">@ViewData["Title"]</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12">
+
+    <div class="row justify-content-between">
+
+        <div class="col-md-12">
+
+            <partial name="_Alert" />
+
+            <div class="card">
+
+                <div class="card-header d-flex justify-content-between">
+                    <div>
+                        <i class="bi bi-table"></i><span> Lists</span>
+                    </div>
+                    <div>
+                        <a asp-action="Add" class="btn btn-sm btn-primary">Add User</a>
+                    </div>
+                </div>
+
+                <div class="card-body table-responsive">
+
+                    <table class="table table-bordered table-report border">
+                        <thead class="bg-secondary-light">
+                            <tr>
+                                <th>SN</th>
+                                <th>Profile Pic</th>
+                                <th>Last Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                                <th>Role</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var sn = 0;
+                            }
+                            @foreach(var user in Model){
+                                <tr>
+                                    <td>@{sn++;} @sn</td>
+                                    <td>
+                                        <img src="@user.ProfilePictureUrl" class="img-fluid" style="max-width: 150px;">
+                                    </td>
+                                    <td>@user.FirstName</td>
+                                    <td>@user.LastName</td>
+                                    <td>@user.Email</td>
+                                    <td>@user.PhoneNumber</td>
+                                    <td>
+                                        @if (user.IsActive == true)
+                                        {
+                                            <span class="badge bg-success">Active</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">Inactive</span>
+                                        }
+                                    </td>
+                                    <td>@user.Role</td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id=@user.Id class="text-primary" title="Edit"><i class="bi bi-pencil-square"></i></a> | 
+                                        <a asp-action="Password" asp-route-id=@user.Id class="text-primary" title="Change Password"><i class="bi bi-lock"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(function() {
+            $('.table-report').DataTable({
+                "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "autoWidth": true
+            });
+        });
+    </script>
+}
