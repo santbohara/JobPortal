@@ -14,26 +14,39 @@
     </nav>
 </div>
 
-<div class="col-md-12 col-lg-6">
+<div class="col-md-8">
 
     <partial name="_Alert" />
 
     @Html.ValidationSummary()
 
-    <div class="card">
+    <div class="row">
 
-        <div class="card-body">
-
-            <div class="row">
-
-                <div class="col-md-5 text-center">
-                    <div class="mb-2">
-                        <img src="@Model.ProfilePictureUrl" class="rounded-circle border" width="200" height="200"/>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        @if (String.IsNullOrEmpty(Model.ProfilePictureUrl) || Model.ProfilePictureUrl == null)
+                        {
+                            <img src="~/static/default-img.jpg" class="img-fluid rounded-circle border" style="width: 150px; height:150px">
+                        }
+                        else
+                        {
+                            <img src="data:image;base64,@Model.ProfilePictureUrl" class="img-fluid rounded-circle border shadow-sm" style="width: 150px; height:150px">
+                        }
                     </div>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal">Change Picture</a>
+                    <div class="text-center">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"><i class="bi bi-pencil-square"></i></a>
+                        <p class="fw-bold m-0">@Model.FirstName @Model.LastName</p>
+                        <small>@Model.Role</small>
+                    </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="col-md-7">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
                     <form asp-action="Edit" method="post" autocomplete="off">
                         <input type="hidden" asp-for="@Model.Id" />
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -72,37 +85,38 @@
 
                         <div class="mb-3">
                             <label class="form-check-label">
-                                <input class="form-check-input" asp-for="@Model.IsActive" checked /> @Html.DisplayNameFor(model => model.IsActive)
-                            </label>
-                        </div>
+                                @Html.CheckBoxFor(m => m.IsActive, new { @checked = Model.IsActive, @class="form-check-input" }) Active
+                                </label>
+                            </div>
 
-                        <button type="submit" class="btn btn-primary">Update</button>
-                        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
-                    </form>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form asp-action="UploadImage" method="post" enctype="multipart/form-data">
-                <input type="hidden" asp-for="@Model.Id" />
-                <div class="modal-header">
-                    <h5 class="modal-title" id="imageModalLabel">Upload Image</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="file" class="form-control" name="ProfilePicture" />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
+    <!-- Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form asp-action="UploadImage" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="@Model.Id" />
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageModalLabel">Upload Image</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input asp-for="@Model.ProfilePicture" class="form-control" accept="image/png, image/jpeg" />
+                        <span asp-validation-for="@Model.ProfilePicture" class="text-danger"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>

@@ -27,6 +27,7 @@ namespace JobPortal.Areas.Users.Controllers
             var users = _user.Users.Select(c => new UserViewModel()
             {
                 Id = c.Id,
+                ProfilePictureUrl = Convert.ToBase64String(c.ProfilePicture ?? Array.Empty<byte>()),
                 FirstName = c.FirstName,
                 LastName = c.LastName,
                 Email = c.Email,
@@ -116,22 +117,15 @@ namespace JobPortal.Areas.Users.Controllers
             var editUser = new UserViewModel
             {
                 Id = user.Id,
+                ProfilePictureUrl = Convert.ToBase64String(user.ProfilePicture ?? Array.Empty<byte>()),
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 UserName = user.UserName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 IsActive = user.IsActive,
+                Role = string.Join(",", _user.GetRolesAsync(user).Result.ToArray()),
             };
-
-            if (user.ProfilePicture == null)
-            {
-                editUser.ProfilePictureUrl = "/static/default-img.jpg";
-            }
-            else
-            {
-                editUser.ProfilePictureUrl = $"data:image/png;base64,{Convert.ToBase64String(user.ProfilePicture)}";
-            }
 
             var currentRoles = await _user.GetRolesAsync(user);
 
@@ -142,7 +136,7 @@ namespace JobPortal.Areas.Users.Controllers
                             {
                                 Text = x.Name,
                                 Value = x.Name,
-                                Selected = x.Id == Id
+                                Selected = x.Id == user.Id
                             }).ToList();
 
             editUser.Roles = rolesList;
@@ -184,7 +178,8 @@ namespace JobPortal.Areas.Users.Controllers
 
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index");
+                        TempData["Success"] = "User updated successfully!";
+                        return RedirectToAction("Edit", new { input.Id });
                     }
                     else
                     {
@@ -203,21 +198,48 @@ namespace JobPortal.Areas.Users.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UploadImage(string Id, [Bind("ProfilePicture")] UserViewModel file)
         {
-            var user = await _user.FindByIdAsync(Id);
+            if (file.ProfilePicture == null)
+            {
+                TempData["Danger"] = "Please select image to upload!";
 
-            var stream = new MemoryStream();
+                return RedirectToAction("Edit", new { Id });
+            }
+            else
+            {
+                var user = await _user.FindByIdAsync(Id);
 
-            file.ProfilePicture?.CopyTo(stream);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    var stream = new MemoryStream();
 
-            user.ProfilePicture = stream.ToArray();
+                    file.ProfilePicture.CopyTo(stream);
 
-            _db.Users.Update(user);
+                    user.ProfilePicture = stream.ToArray();
 
-            _db.SaveChanges();
+                    _db.Users.Update(user);
 
-            return RedirectToAction(nameof(Index));
+                    var result = await _db.SaveChangesAsync();
+
+                    if (result > 0)
+                    {
+                        TempData["Success"] = "Picture updated successfully!";
+                        return RedirectToAction("Edit", new { Id });
+                    }
+                    else
+                    {
+                        TempData["Danger"] = "Update failed!";
+                        return RedirectToAction("Edit", new { Id });
+                    }
+                }
+
+            }
         }
 
         private List<SelectListItem> GetRoles()

@@ -34,11 +34,11 @@
 
                 <div class="card-body table-responsive">
 
-                    <table class="table table-bordered table-report border">
-                        <thead class="bg-secondary-light">
+                    <table class="table table-bordered row-border table-report border">
+                        <thead class="">
                             <tr>
-                                <th>SN</th>
-                                <th>Profile Pic</th>
+                                <th class="text-center">SN</th>
+                                <th></th>
                                 <th>Last Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
@@ -52,11 +52,21 @@
                             @{
                                 var sn = 0;
                             }
-                            @foreach(var user in Model){
+                            @foreach (var user in Model)
+                            {
                                 <tr>
-                                    <td>@{sn++;} @sn</td>
-                                    <td>
-                                        <img src="@user.ProfilePictureUrl" class="img-fluid" style="max-width: 150px;">
+                                    <td class="text-center">@{
+                                            sn++;
+                                        } @sn</td>
+                                    <td class="text-center">
+                                        @if(String.IsNullOrEmpty(user.ProfilePictureUrl) || user.ProfilePictureUrl == null){
+
+                                            <img src="~/static/default-img.jpg" class="img-fluid rounded-circle border" style="width:50px; height:50px">
+
+                                        }else{
+                                            
+                                            <img src="data:image;base64,@user.ProfilePictureUrl" class="img-fluid rounded-circle border" style="width: 50px; height:50px">
+                                        }
                                     </td>
                                     <td>@user.FirstName</td>
                                     <td>@user.LastName</td>
@@ -74,7 +84,7 @@
                                     </td>
                                     <td>@user.Role</td>
                                     <td>
-                                        <a asp-action="Edit" asp-route-id=@user.Id class="text-primary" title="Edit"><i class="bi bi-pencil-square"></i></a> | 
+                                        <a asp-action="Edit" asp-route-id=@user.Id class="text-primary" title="Edit"><i class="bi bi-pencil-square"></i></a> |
                                         <a asp-action="Password" asp-route-id=@user.Id class="text-primary" title="Change Password"><i class="bi bi-lock"></i></a>
                                     </td>
                                 </tr>

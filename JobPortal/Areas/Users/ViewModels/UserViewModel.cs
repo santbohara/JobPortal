@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using JobPortal.Helper;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -35,6 +36,9 @@ namespace JobPortal.Areas.Users.ViewModels
 
         public string Role { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = "Please select a file.")]
+        [DataType(DataType.Upload)]
+        [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" })]
         public IFormFile ProfilePicture { get; set; }
 
         public string ProfilePictureUrl { get; set; }
