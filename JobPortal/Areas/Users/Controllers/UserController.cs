@@ -5,11 +5,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.WebUtilities;
+using NeoSmart.Utils;
+using System.Text;
 
 namespace JobPortal.Areas.Users.Controllers
 {
     [Area("Users")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly UserManager<AdminUser> _user;
@@ -114,6 +117,11 @@ namespace JobPortal.Areas.Users.Controllers
         {
             var user = await _user.FindByIdAsync(Id);
 
+            if (user == null)
+            {
+                return NotFound();
+            }
+
             var editUser = new UserViewModel
             {
                 Id = user.Id,
@@ -163,17 +171,19 @@ namespace JobPortal.Areas.Users.Controllers
                 }
                 else
                 {
-                    //find the role(s) of current user and remove it
-                    var currentRoles = await _user.GetRolesAsync(check);
-                    await _user.RemoveFromRolesAsync(check, currentRoles);
 
-                    //Update User and Sync Role as well
+                    //Update User details
                     check.FirstName = input.FirstName;
                     check.LastName = input.LastName;
                     check.PhoneNumber = input.PhoneNumber;
                     check.IsActive = input.IsActive;
 
                     var result = await _user.UpdateAsync(check);
+
+                    //find the role(s) of current user and remove it
+                    var currentRoles = await _user.GetRolesAsync(check);
+                    await _user.RemoveFromRolesAsync(check, currentRoles);
+
                     await _user.AddToRoleAsync(check, input.Role);
 
                     if (result.Succeeded)
@@ -240,6 +250,60 @@ namespace JobPortal.Areas.Users.Controllers
                 }
 
             }
+        }
+
+        public async Task<IActionResult> ChangePassword(String Id)
+        {
+            var user = await _user.FindByIdAsync(Id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var editUser = new UserViewModel
+            {
+                Id = user.Id,
+                ProfilePictureUrl = Convert.ToBase64String(user.ProfilePicture ?? Array.Empty<byte>()),
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                Email = user.Email,
+                Role = string.Join(",", _user.GetRolesAsync(user).Result.ToArray()),
+            };
+
+            return View(editUser);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(string Id,[Bind("Email", "FirstName", "LastName", "Password", "ConfirmPassword")] UserViewModel input)
+        {
+            //Get User Details
+            var user = await _user.FindByIdAsync(Id);
+
+            if(user == null)
+            {
+                return NotFound();
+            }
+
+            var token = await _user.GeneratePasswordResetTokenAsync(user);
+
+            var result = await _user.ResetPasswordAsync(user, token, input.Password);
+
+            if (result.Succeeded)
+            {
+                TempData["Success"] = "Password changed successfully!";
+
+                return RedirectToAction("ChangePassword", new { Id });
+            }
+            
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(input);
         }
 
         private List<SelectListItem> GetRoles()

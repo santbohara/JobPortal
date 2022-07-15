@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Manager User";
+    ViewData["Title"] = "Manage User";
     ViewData["ActiveNav"] = "Users";
 }
 
@@ -85,7 +85,7 @@
                                     <td>@user.Role</td>
                                     <td>
                                         <a asp-action="Edit" asp-route-id=@user.Id class="text-primary" title="Edit"><i class="bi bi-pencil-square"></i></a> |
-                                        <a asp-action="Password" asp-route-id=@user.Id class="text-primary" title="Change Password"><i class="bi bi-lock"></i></a>
+                                        <a asp-action="ChangePassword" asp-route-id=@user.Id class="text-primary" title="Change Password"><i class="bi bi-lock"></i></a>
                                     </td>
                                 </tr>
                             }

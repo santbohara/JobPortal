@@ -332,7 +332,6 @@ table.dataTable{
     font-size: 14px;
     font-family: "Nunito", sans-serif;
     color: #899bbd;
-    font-weight: 600;
 }
 
     .breadcrumb a {
@@ -350,7 +349,6 @@ table.dataTable{
 
     .breadcrumb .active {
         color: #51678f;
-        font-weight: 600;
     }
 
 /* Bordered Tabs */

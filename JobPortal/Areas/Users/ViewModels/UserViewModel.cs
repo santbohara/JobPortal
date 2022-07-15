@@ -31,14 +31,19 @@ namespace JobPortal.Areas.Users.ViewModels
         public string PhoneNumber { get; set; }
 
         [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string? Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
 
         public string Role { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Please select a file.")]
         [DataType(DataType.Upload)]
-        [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" })]
         public IFormFile ProfilePicture { get; set; }
 
         public string ProfilePictureUrl { get; set; }
