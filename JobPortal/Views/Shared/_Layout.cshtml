@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AdminUser> SignInManager
+@inject UserManager<AdminUser> UserManager
+@{
+    var user = await UserManager.GetUserAsync(User);
+    var role = await UserManager.GetRolesAsync(user);
+
+    string ProfilePictureUrl = Convert.ToBase64String(user?.ProfilePicture ?? Array.Empty<byte>());
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,8 +19,6 @@
     <link rel="stylesheet" href="~/lib/bootstrap-icon/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.min.css">
-
-
 </head>
 <body>
 
@@ -33,22 +40,31 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="~/static/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Sant</span>
+                        
+                         @if (String.IsNullOrEmpty(ProfilePictureUrl) || ProfilePictureUrl == null)
+                        {
+                            <img src="~/static/default-img.jpg" class="rounded-circle border">
+                        }
+                        else
+                        {
+                            <img src="data:image;base64,@ProfilePictureUrl" class="rounded-circle border">
+                        }
+
+                        <span class="d-none d-md-block dropdown-toggle ps-2">@user.FirstName</span>
                     </a>
                     <!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Sant Bohara</h6>
-                            <span>Web Designer</span>
+                            <h6>@user.FirstName @user.LastName</h6>
+                            <span>@role[0]</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="/">
+                            <a class="dropdown-item d-flex align-items-center" asp-area="Users" asp-controller="Profile" asp-action="Index">
                                 <i class="fa fa-user"></i>
                                 <span>My Profile</span>
                             </a>
@@ -70,21 +86,22 @@
             </ul>
             <form class="form-inline"
                   id="logOutForm"
-                  asp-area="" 
-                  asp-controller="Account" 
-                  asp-action="Logout" 
-            >
+                  asp-area=""
+                  asp-controller="Account"
+                  asp-action="Logout">
             </form>
         </nav>
         <!-- End Icons Navigation -->
 
     </header>
     <!-- End Header -->
+
     <!-- ======= Sidebar ======= -->
 
     <partial name="_SideBar" />
 
     <!-- End Sidebar-->
+
     <!-- ======= Main ======= -->
     <main id="main" class="main">
 
@@ -93,7 +110,6 @@
         </section>
 
         <div class="clearfix"></div>
-
 
         <!-- Footer -->
         <footer class="site-footer p-0">
