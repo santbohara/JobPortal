@@ -47,6 +47,7 @@ namespace JobPortal.Data
 
         public DbSet<Jobs> Jobs { get; set; }
         public DbSet<JobCategory> JobCategory { get; set; }
+        public DbSet<JobQualification> JobQualification { get; set; }
 
     }
 }

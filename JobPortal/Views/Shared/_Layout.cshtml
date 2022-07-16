@@ -43,20 +43,20 @@
                         
                          @if (String.IsNullOrEmpty(ProfilePictureUrl) || ProfilePictureUrl == null)
                         {
-                            <img src="~/static/default-img.jpg" class="rounded-circle border">
+                            <img src="~/static/default-img.jpg" class="rounded-circle border" style="width:36px; height:36px;">
                         }
                         else
                         {
-                            <img src="data:image;base64,@ProfilePictureUrl" class="rounded-circle border">
+                            <img src="data:image;base64,@ProfilePictureUrl" class="rounded-circle border" style="width:36px; height:36px;">
                         }
 
-                        <span class="d-none d-md-block dropdown-toggle ps-2">@user.FirstName</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2">@user?.FirstName</span>
                     </a>
                     <!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>@user.FirstName @user.LastName</h6>
+                            <h6>@user?.FirstName @user?.LastName</h6>
                             <span>@role[0]</span>
                         </li>
                         <li>

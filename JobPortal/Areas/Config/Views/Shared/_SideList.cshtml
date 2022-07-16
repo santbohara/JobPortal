@@ -1,10 +1,20 @@
 ﻿<div class="list-group card border-0">
 
-    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+    <a 
+        asp-controller="JobConfig" 
+        asp-action="Index" 
+        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Category" ? "active" : "")" 
+        aria-current="true">
         Job Category
     </a>
 
-    <a href="#" class="list-group-item list-group-item-action">Job Qualifications</a>
+    <a 
+        asp-controller="JobQualifications" 
+        asp-action="Index"  
+        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Qualification" ? "active" : "")">
+        Job Qualifications
+    </a>
+    
     <a href="#" class="list-group-item list-group-item-action">Job Type</a>
     <a href="#" class="list-group-item list-group-item-action">Salary Type</a>
     <a href="#" class="list-group-item list-group-item-action">Salary Range</a>
