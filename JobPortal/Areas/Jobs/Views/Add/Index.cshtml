@@ -1,0 +1,173 @@
+﻿@using JobPortal.Areas.Jobs.ViewModel
+
+@{
+    ViewData["Title"] = "Add Job";
+    ViewData["ActiveNav"] = "Jobs";
+}
+
+<div>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Dashboard</li>
+            <li class="breadcrumb-item">Jobs</li>
+            <li class="breadcrumb-item active">@ViewData["Title"]</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-md-12">
+
+    <partial name="_Alert" />
+
+    <div class="card">
+
+        <div class="card-body">
+
+            @Html.ValidationSummary()
+
+            <form>
+
+                <div class="row">
+
+                    <div class="mb-3 col-md-12">
+
+                        <label class="form-label">Job Title</label>
+                        <input type="text" class="form-control" placeholder="Job Title" />
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="mb-3 col-md-4">
+
+                        <label class="form-label">Application Deadline</label>
+                        <input type="text" class="form-control" placeholder="Application Deadline" />
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label class="form-label">Job Category</label>
+                        <select class="form-control">
+                            <option>Select...</option>
+                            @foreach (var item in Model.JobCategory)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label class="form-label">Job Qualification</label>
+                        <select class="form-control">
+                            <option>Select....</option>
+                            @foreach (var item in Model.JobQualification)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label class="form-label">Job Type</label>
+                        <select class="form-control">
+                            <option>Select....</option>
+                            @foreach (var item in Model.JobType)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label class="form-label">Salary Type</label>
+                        <select class="form-control">
+                            <option>Select....</option>
+                            @foreach (var item in Model.SalaryType)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label class="form-label">Salary Range</label>
+                        <select class="form-control">
+                            <option>Select....</option>
+                            @foreach (var item in Model.SalaryRange)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label class="form-label">Job Experience</label>
+                        <select class="form-control">
+                            <option>Select....</option>
+                            @foreach (var item in Model.JobExperience)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label class="form-label">Job Shift</label>
+                        <select class="form-control">
+                            <option>Select....</option>
+                            @foreach (var item in Model.JobShift)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label class="form-label">Job Level</label>
+                        <select class="form-control">
+                            <option>Select....</option>
+                            @foreach (var item in Model.JobLevel)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-12">
+
+                        <label class="form-label">Job Description</label>
+                        <textarea class="form-control" rows="6" placeholder="Job Description"></textarea>
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-12">
+
+                        <label class="form-label">Job Specification</label>
+                        <textarea class="form-control" rows="6" placeholder=""></textarea>
+                        <span class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn btn-success">Add Job</button>
+            </form>
+        </div>
+    </div>
+</div>
