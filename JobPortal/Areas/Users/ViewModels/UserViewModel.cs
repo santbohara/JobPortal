@@ -14,7 +14,7 @@ namespace JobPortal.Areas.Users.ViewModels
         [StringLength(50, MinimumLength = 2, ErrorMessage = "{0} must be between {2} and {1} character(s) in length.")]
         public string LastName { get; set; }
 
-        [EmailAddressAttribute]
+        [EmailAddress]
         [Required]
         public string Email { get; set; }
 

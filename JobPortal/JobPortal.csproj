@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Jobs\Data\" />
-    <Folder Include="Areas\Jobs\Models\" />
     <Folder Include="Areas\Users\Data\" />
     <Folder Include="Areas\Users\Models\" />
     <Folder Include="Helper\" />

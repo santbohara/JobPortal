@@ -1,4 +1,5 @@
 ﻿using JobPortal.Areas.Config.Models;
+using JobPortal.Areas.Jobs.Models;
 using JobPortal.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -45,7 +46,7 @@ namespace JobPortal.Data
             });
         }
 
-        public DbSet<Jobs> Jobs { get; set; }
+        public DbSet<JobsList> JobsList { get; set; }
         public DbSet<JobCategory> JobCategory { get; set; }
         public DbSet<JobQualification> JobQualification { get; set; }
         public DbSet<JobType> JobType { get; set; }

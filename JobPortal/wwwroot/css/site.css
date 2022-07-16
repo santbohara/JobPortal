@@ -63,6 +63,9 @@ table.dataTable{
     padding: 5px 0 !important;
     display: block !important;
 }
+.bootstrap-select {
+    border: 1px solid #ced4da !important;
+}
 /*--------------------------------------------------------------
 # Page Title
 --------------------------------------------------------------*/

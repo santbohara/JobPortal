@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JobPortal.Models
+namespace JobPortal.Areas.Jobs.Models
 {
-    public class Jobs
+    public class JobsList
     {
         [Key]
         public Guid Id { get; set; }
@@ -11,31 +11,28 @@ namespace JobPortal.Models
         public string Title { get; set; }
 
         [Required]
-        public int Status { get; set; }
+        public string Category { get; set; }
 
         [Required]
-        public int Category { get; set; }
+        public string JobQualifications { get; set; }
 
         [Required]
-        public int JobQualifications { get; set; }
+        public string JobType { get; set; }
 
         [Required]
-        public int JobType { get; set; }
+        public string SalaryType { get; set; }
 
         [Required]
-        public int SalaryType { get; set; }
+        public string SalaryRange { get; set; }
 
         [Required]
-        public int SalaryRange { get; set; }
+        public string JobExperience { get; set; }
 
         [Required]
-        public int JobExperience { get; set; }
+        public string JobShift { get; set; }
 
         [Required]
-        public int JobShift { get; set; }
-
-        [Required]
-        public int JobLevel { get; set; }
+        public string JobLevel { get; set; }
 
         [Required]
         public bool IsPublished { get; set; }
