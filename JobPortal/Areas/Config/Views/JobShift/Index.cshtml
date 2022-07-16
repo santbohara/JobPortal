@@ -1,9 +1,9 @@
-﻿@model JobPortal.Areas.Config.ViewModels.JobQualificationViewModel
+﻿@model JobPortal.Areas.Config.ViewModels.JobShiftViewModel
 
 @{
     ViewData["Title"] = "Job Config";
     ViewData["ActiveNav"] = "Config";
-    ViewData["ActiveBtn"] = "Qualification";
+    ViewData["ActiveBtn"] = "Shift";
 }
 
 <div class="pagetitle">
@@ -43,18 +43,10 @@
                         <thead class="bg-secondary-light">
                             <tr>
                                 <th>SN</th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Title)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.IsActive)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.CreatedAt)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.CreatedBy)
-                                </th>
+                                <th>@Html.DisplayNameFor(model => model.Title)</th>
+                                <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                                <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
+                                <th>@Html.DisplayNameFor(model => model.CreatedBy)</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -62,20 +54,17 @@
                             @{
                                 var sn = 0;
                             }
-                            @foreach (var item in Model.jobQualification)
+                            @foreach (var model in Model.JobShift)
                             {
                                 <tr>
                                     <td>
                                         @{
                                             sn++;
-                                        }
-                                        @sn
+                                        } @sn
                                     </td>
+                                    <td>@Html.DisplayFor(item => model.Title)</td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Title)
-                                    </td>
-                                    <td>
-                                        @if (item.IsActive == true)
+                                        @if (model.IsActive == true)
                                         {
                                             <span class="badge bg-success">Active</span>
                                         }
@@ -84,14 +73,10 @@
                                             <span class="badge bg-danger">Inactive</span>
                                         }
                                     </td>
+                                    <td>@Html.DisplayFor(item => model.CreatedAt)</td>
+                                    <td>@Html.DisplayFor(item => model.CreatedBy)</td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.CreatedAt)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CreatedBy)
-                                    </td>
-                                    <td>
-                                        <a href="#" class="text-primary" id="editLink" data-bs-toggle="modal" data-bs-target="#editModel" data-id="@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="text-primary" id="editLink" data-bs-toggle="modal" data-bs-target="#editModel" data-id="@Html.DisplayFor(item => model.Id)"><i class="fa fa-edit"></i></a>
                                     </td>
                                 </tr>
                             }
@@ -184,7 +169,7 @@
                 var id = $(this).data('id');
                 $.ajax({
                     type: "GET",
-                    url: 'JobQualifications/Edit/',
+                    url: 'JobShift/Edit/',
                     data: { id: id },
                     success: function(response) {
                         $("#Id").val(response.id);

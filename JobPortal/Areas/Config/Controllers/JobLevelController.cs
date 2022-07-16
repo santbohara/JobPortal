@@ -9,12 +9,12 @@ using Microsoft.EntityFrameworkCore;
 namespace JobPortal.Areas.Config.Controllers
 {
     [Area("Config")]
-    public class JobConfigController : Controller
+    public class JobLevelController : Controller
     {
         private readonly ApplicationDbContext _db;
         private readonly UserManager<AdminUser> _user;
 
-        public JobConfigController(ApplicationDbContext db, UserManager<AdminUser> user)
+        public JobLevelController(ApplicationDbContext db, UserManager<AdminUser> user)
         {
             _db = db;
             _user = user;
@@ -22,9 +22,9 @@ namespace JobPortal.Areas.Config.Controllers
 
         public async Task<IActionResult> Index()
         {
-            JobCategoryViewModel list = new()
+            JobLevelViewModel list = new()
             {
-                jobCategories = await _db.JobCategory.ToListAsync()
+                JobLevel = await _db.JobLevel.ToListAsync()
             };
 
             return View(list);
@@ -32,13 +32,13 @@ namespace JobPortal.Areas.Config.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Add([Bind("Title", "IsActive")] JobCategoryViewModel input)
+        public async Task<IActionResult> Add([Bind("Title", "IsActive")] JobLevelViewModel input)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    JobCategory category = new()
+                    JobLevel result = new()
                     {
                         Title = input.Title,
                         IsActive = input.IsActive,
@@ -46,7 +46,7 @@ namespace JobPortal.Areas.Config.Controllers
                         CreatedAt = DateTime.Now
                     };
 
-                    _db.Add(category);
+                    _db.Add(result);
 
                     TempData["Success"] = "Record Added Successfully!";
                     await _db.SaveChangesAsync();
@@ -65,21 +65,21 @@ namespace JobPortal.Areas.Config.Controllers
 
         public JsonResult Edit(Guid id)
         {
-            var category = _db.JobCategory.Find(id);
+            var result = _db.JobLevel.Find(id);
 
-            return Json(category);
+            return Json(result);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id", "Title", "IsActive")] JobCategoryViewModel input)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id", "Title", "IsActive")] JobLevelViewModel input)
         {
             if (id != input.Id)
             {
                 return NotFound();
             }
 
-            var dataToEdit = await _db.JobCategory.FindAsync(id);
+            var dataToEdit = await _db.JobLevel.FindAsync(id);
 
             if (dataToEdit != null)
             {
@@ -95,7 +95,7 @@ namespace JobPortal.Areas.Config.Controllers
             }
             else
             {
-                Problem("Record Not found to edit");
+                Problem("Data Not found to edit");
             }
 
             return RedirectToAction(nameof(Index));

@@ -15,10 +15,46 @@
         Job Qualifications
     </a>
     
-    <a href="#" class="list-group-item list-group-item-action">Job Type</a>
-    <a href="#" class="list-group-item list-group-item-action">Salary Type</a>
-    <a href="#" class="list-group-item list-group-item-action">Salary Range</a>
-    <a href="#" class="list-group-item list-group-item-action">Job Experience</a>
-    <a href="#" class="list-group-item list-group-item-action">Job Shift</a>
-    <a href="#" class="list-group-item list-group-item-action">Job Level</a>
+    <a 
+        asp-controller="JobType"
+        asp-action="Index"  
+        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Type" ? "active" : "")">
+        Job Type
+    </a>
+
+    <a 
+        asp-controller="SalaryType"
+        asp-action="Index"  
+        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Salary" ? "active" : "")">
+        Salary Type
+    </a>
+
+    <a 
+        asp-controller="SalaryRange"
+        asp-action="Index"  
+        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Range" ? "active" : "")">
+        Salary Range
+    </a>
+
+    <a 
+        asp-controller="JobExperience"
+        asp-action="Index"  
+        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Experience" ? "active" : "")">
+        Job Experience
+    </a>
+
+    <a 
+        asp-controller="JobShift"
+        asp-action="Index"  
+        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Shift" ? "active" : "")">
+        Job Shift
+    </a>
+
+    <a 
+        asp-controller="JobLevel"
+        asp-action="Index"  
+        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Level" ? "active" : "")">
+        Job Level
+    </a>
+
 </div>

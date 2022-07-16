@@ -48,6 +48,12 @@ namespace JobPortal.Data
         public DbSet<Jobs> Jobs { get; set; }
         public DbSet<JobCategory> JobCategory { get; set; }
         public DbSet<JobQualification> JobQualification { get; set; }
+        public DbSet<JobType> JobType { get; set; }
+        public DbSet<SalaryType> SalaryType { get; set; }
+        public DbSet<SalaryRange> SalaryRange { get; set; }
+        public DbSet<JobExperience> JobExperience { get; set; }
+        public DbSet<JobShift> JobShift { get; set; }
+        public DbSet<JobLevel> JobLevel { get; set; }
 
     }
 }

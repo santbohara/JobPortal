@@ -48,7 +48,7 @@ namespace JobPortal.Areas.Config.Controllers
 
                     _context.Add(category);
 
-                    TempData["Success"] = "Job Category Added Successfully!";
+                    TempData["Success"] = "Record Added Successfully!";
                     await _context.SaveChangesAsync();
                 }
             }
@@ -95,7 +95,7 @@ namespace JobPortal.Areas.Config.Controllers
             }
             else
             {
-                Problem("Category Not found to edit");
+                Problem("Record Not found to edit");
             }
 
             return RedirectToAction(nameof(Index));
