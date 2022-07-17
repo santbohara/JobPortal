@@ -1,0 +1,92 @@
+﻿@model IEnumerable<JobPortal.Areas.Jobs.Models.JobsList>
+
+@{
+    ViewData["Title"] = "Job List";
+    ViewData["ActiveNav"] = "Jobs";
+}
+
+<div>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Dashboard</li>
+            <li class="breadcrumb-item">Jobs</li>
+            <li class="breadcrumb-item active">@ViewData["Title"]</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-md-12">
+
+    <partial name="_Alert" />
+
+    <div class="table-custom">
+
+        @Html.ValidationSummary()
+
+        <table class="table row-border table-report border shadow-sm">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th class="fw-normal">
+                        Job Title
+                    </th>
+                    <th class="fw-normal">
+                        Status
+                    </th>
+                    <th class="fw-normal">
+                        Applications
+                    </th>
+                    <th class="fw-normal">
+                        Deadline
+                    </th>
+                    <th data-orderable="false"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <h6 class="fw-bold">@item.Title</h6>
+                            <small class="text-muted">Posted Date : @item.CreatedAt.ToString("yyyy-MM-dd")</small>
+                        </td>
+                        <td>
+                            @if(item.IsPublished == true)
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning">Not Publised</span>
+                            }
+                        </td>
+                        <td>
+                            <span class="badge bg-primary">0</span>
+                        </td>
+                        <td>
+                            @item.ExpireDate.ToString("yyyy-MM-dd")
+                        </td>
+                        <td class="text-center">
+                            <a href="" class="text-muted text-hover-primary"><i class="fs-4 bi bi-clipboard-check" title="Copy Link"></i></a>
+                            <a href="" class="text-muted text-hover-primary"><i class="fs-4 bi bi-pencil-square" title="Edit"></i></a>
+                            <a href="" class="text-muted text-hover-primary"><i class="fs-4 bi bi-info-square" title="View"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(function() {
+            $('.table-report').DataTable({
+                "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "autoWidth": true
+            });
+        });
+    </script>
+}
