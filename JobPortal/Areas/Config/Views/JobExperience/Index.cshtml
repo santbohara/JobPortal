@@ -6,146 +6,134 @@
     ViewData["ActiveBtn"] = "Experience";
 }
 
-<div class="pagetitle">
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">Dashboard</li>
-            <li class="breadcrumb-item">Config</li>
-            <li class="breadcrumb-item active">@ViewData["Title"]</li>
-        </ol>
-    </nav>
-</div>
-
 <div class="col-12">
 
-    <div class="row justify-content-between">
+    <div class="mb-4">
+        <partial name="_SideList" />
+    </div>
 
-        <div class="col-md-3 mb-4">
-            <partial name="_SideList" />
+    <partial name="_Alert" />
+
+    <div class="card shadow-none">
+
+        <div class="card-header d-flex justify-content-between">
+            <div>
+                <i class="bi bi-table"></i><span> Lists</span>
+            </div>
+            <div>
+                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addModel">Add New</button>
+            </div>
         </div>
 
-        <div class="col-md-9">
+        <div class="card-body table-responsive">
 
-            <partial name="_Alert" />
+            <table class="table table-bordered table-report border">
+                <thead class="bg-secondary-light">
+                    <tr>
+                        <th width="30px">SN</th>
+                        <th>@Html.DisplayNameFor(model => model.Title)</th>
+                        <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                        <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
+                        <th>@Html.DisplayNameFor(model => model.CreatedBy)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var sn = 0;
+                    }
+                    @foreach (var model in Model.JobExperience)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    sn++;
+                                } @sn
+                            </td>
+                            <td>@Html.DisplayFor(item => model.Title)</td>
+                            <td>
+                                @if (model.IsActive == true)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Inactive</span>
+                                }
+                            </td>
+                            <td>@Html.DisplayFor(item => model.CreatedAt)</td>
+                            <td>@Html.DisplayFor(item => model.CreatedBy)</td>
+                            <td>
+                                <a href="#" class="text-primary" id="editLink" data-bs-toggle="modal" data-bs-target="#editModel" data-id="@Html.DisplayFor(item => model.Id)"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-            <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <div>
-                        <i class="bi bi-table"></i><span> Lists</span>
+<!-- Add Modal -->
+<div class="modal fade" id="addModel" tabindex="-1" aria-labelledby="addModellLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="Add" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModelLabel">Add</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label asp-for="@Model.Title" class="form-label"></label>
+                        <input asp-for="@Model.Title" class="form-control">
+                        <span asp-validation-for="@Model.Title" class="text-danger"></span>
                     </div>
-                    <div>
-                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addModel">Add New</button>
+                    <div class="mb-3">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="IsActive" checked /> @Html.DisplayNameFor(model => model.IsActive)
+                        </label>
                     </div>
                 </div>
-                <div class="card-body table-responsive">
-
-                    <table class="table table-bordered table-report border">
-                        <thead class="bg-secondary-light">
-                            <tr>
-                                <th>SN</th>
-                                <th>@Html.DisplayNameFor(model => model.Title)</th>
-                                <th>@Html.DisplayNameFor(model => model.IsActive)</th>
-                                <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
-                                <th>@Html.DisplayNameFor(model => model.CreatedBy)</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{
-                                var sn = 0;
-                            }
-                            @foreach (var model in Model.JobExperience)
-                            {
-                                <tr>
-                                    <td>
-                                        @{
-                                            sn++;
-                                        } @sn
-                                    </td>
-                                    <td>@Html.DisplayFor(item => model.Title)</td>
-                                    <td>
-                                        @if (model.IsActive == true)
-                                        {
-                                            <span class="badge bg-success">Active</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="badge bg-danger">Inactive</span>
-                                        }
-                                    </td>
-                                    <td>@Html.DisplayFor(item => model.CreatedAt)</td>
-                                    <td>@Html.DisplayFor(item => model.CreatedBy)</td>
-                                    <td>
-                                        <a href="#" class="text-primary" id="editLink" data-bs-toggle="modal" data-bs-target="#editModel" data-id="@Html.DisplayFor(item => model.Id)"><i class="fa fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
-            </div>
+            </form>
         </div>
+    </div>
+</div>
 
-        <!-- Add Modal -->
-        <div class="modal fade" id="addModel" tabindex="-1" aria-labelledby="addModellLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form asp-action="Add" method="post">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="addModelLabel">Add</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label asp-for="@Model.Title" class="form-label"></label>
-                                <input asp-for="@Model.Title" class="form-control">
-                                <span asp-validation-for="@Model.Title" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="IsActive" checked /> @Html.DisplayNameFor(model => model.IsActive)
-                                </label>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </form>
+<!-- Edit Modal -->
+<div class="modal fade" id="editModel" tabindex="-1" aria-labelledby="editModellLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="Edit" id="editForm" method="post">
+                <input type="hidden" name="Id" id="Id" value="" />
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModelLabel">Edit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-        </div>
-
-        <!-- Edit Modal -->
-        <div class="modal fade" id="editModel" tabindex="-1" aria-labelledby="editModellLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form asp-action="Edit" id="editForm" method="post">
-                        <input type="hidden" name="Id" id="Id" value="" />
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editModelLabel">Edit</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label asp-for="@Model.Title" class="form-label"></label>
-                                <input asp-for="@Model.Title" id="title" class="form-control">
-                                <span asp-validation-for="@Model.Title" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="IsActive" id="isActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                                </label>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </form>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label asp-for="@Model.Title" class="form-label"></label>
+                        <input asp-for="@Model.Title" id="title" class="form-control">
+                        <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="IsActive" id="isActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                        </label>
+                    </div>
                 </div>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
         </div>
+    </div>
+</div>
     </div>
 </div>
 @section scripts{

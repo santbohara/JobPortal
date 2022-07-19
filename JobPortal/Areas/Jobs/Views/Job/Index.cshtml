@@ -5,37 +5,32 @@
     ViewData["ActiveNav"] = "Jobs";
 }
 
-<div>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">Dashboard</li>
-            <li class="breadcrumb-item">Jobs</li>
-            <li class="breadcrumb-item active">@ViewData["Title"]</li>
-        </ol>
-    </nav>
+<div class="d-flex">
+    <a asp-area="Jobs" asp-controller="Job" asp-action="Add" class="btn btn-success">Post a Job</a>
 </div>
 
 <div class="col-md-12">
 
     <partial name="_Alert" />
 
-    <div class="table-custom">
+    <div class="row justify-content-between">
 
         @Html.ValidationSummary()
 
-        <table class="table row-border table-report border shadow-sm">
-            <thead class="bg-dark text-white">
+        <table class="table table-bordered table-report border">
+
+            <thead class="bg-light">
                 <tr>
-                    <th class="fw-normal">
+                    <th>
                         Job Title
                     </th>
-                    <th class="fw-normal">
+                    <th>
                         Status
                     </th>
-                    <th class="fw-normal">
+                    <th>
                         Applications
                     </th>
-                    <th class="fw-normal">
+                    <th>
                         Deadline
                     </th>
                     <th data-orderable="false"></th>
@@ -50,7 +45,7 @@
                             <small class="text-muted">Posted Date : @item.CreatedAt.ToString("yyyy-MM-dd")</small>
                         </td>
                         <td>
-                            @if(item.IsPublished == true)
+                            @if (item.IsPublished == true)
                             {
                                 <span class="badge bg-success">Active</span>
                             }
@@ -66,9 +61,9 @@
                             @item.ExpireDate.ToString("yyyy-MM-dd")
                         </td>
                         <td class="text-center">
-                            <a href="" class="text-muted text-hover-primary"><i class="fs-4 bi bi-clipboard-check" title="Copy Link"></i></a>
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="text-muted text-hover-primary"><i class="fs-4 bi bi-pencil-square" title="Edit"></i></a>
-                            <a href="" class="text-muted text-hover-primary"><i class="fs-4 bi bi-info-square" title="View"></i></a>
+                            <a href=""><i class="fs-4 bi bi-clipboard-check text-primary text-hover-success" title="Copy Link"></i></a>
+                            <a asp-action="Edit" asp-route-id="@item.Id"><i class="fs-4 bi bi-pencil-square text-primary text-hover-success" title="Edit"></i></a>
+                            <a href=""><i class="fs-4 bi bi-info-square text-primary text-hover-success" title="View"></i></a>
                         </td>
                     </tr>
                 }

@@ -28,12 +28,16 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="/" class="logo d-flex align-items-center">
+            <a href="/" class="logo">
                 <img src="~/static/logo2.png" alt="">
             </a>
-            <i class="fa fa-bars toggle-sidebar-btn"></i>
+            <i class="bi bi-list fs-3 toggle-sidebar-btn"></i>
         </div>
         <!-- End Logo -->
+        
+        <div class="px-4">
+            @*<a asp-area="Jobs" asp-controller="Job" asp-action="Add" class="btn btn-success">Post a Job</a>*@
+        </div>
 
         <nav class="header-nav ms-auto">
 

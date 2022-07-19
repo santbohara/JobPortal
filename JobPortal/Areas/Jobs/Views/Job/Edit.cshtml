@@ -1,24 +1,18 @@
 ﻿@model JobPortal.Areas.Jobs.ViewModel.JobViewModel;
 @{
-    ViewData["Title"] = "Job List";
+    ViewData["Title"] = "Edit Job";
     ViewData["ActiveNav"] = "Jobs";
 }
 
 <div>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">Dashboard</li>
-            <li class="breadcrumb-item">Jobs</li>
-            <li class="breadcrumb-item active">@ViewData["Title"]</li>
-        </ol>
-    </nav>
+    <a asp-action="Index" class="nav-link pb-3 px-0"><i class="bi bi-arrow-left-short"></i> Back</a>
 </div>
 
 <div class="col-md-8">
 
     <partial name="_Alert" />
 
-    <div class="card">
+    <div class="card shadow-none">
 
         <div class="card-body">
 
@@ -122,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" value="Update" class="btn btn-primary">Update</button> <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+                <button type="submit" value="Update" class="btn btn-primary">Update</button>
             </form>
         </div>
     </div>

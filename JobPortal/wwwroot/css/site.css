@@ -14,8 +14,6 @@
 
 body {
     font-family: "Open Sans", sans-serif;
-    background: #f6f9ff !important;
-    background-color: #f6f9ff !important;
     color: #444444;
 }
 
@@ -47,6 +45,7 @@ h1, h2, h3, h4, h5, h6 {
         padding: 20px;
     }
 }
+
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     padding: 0.2em 0.7em !important;
     border-radius: 5px !important;
@@ -56,27 +55,63 @@ h1, h2, h3, h4, h5, h6 {
     margin: 15px 0 !important;
     display: inline-table !important;
     border-radius: 5px !important;
-    overflow:hidden !important;
+    overflow: hidden !important;
 }
-.field-validation-error{
+
+.field-validation-error {
     padding: 5px 0 !important;
     display: block !important;
 }
+
 .bootstrap-select {
     border: 1px solid #ced4da !important;
 }
+
 .table-custom table {
     border-radius: 5px !important;
     overflow: hidden !important;
 }
-.table-custom table td {
-    padding: 25px 10px !important;
-}
-.table-custom thead tr{
+
+    .table-custom table td {
+        padding: 25px 10px !important;
+    }
+
+.table-custom thead tr {
+    color: #939393;
     border-width: 2px !important;
 }
+
+table.dataTable {
+    border-collapse: initial !important;
+}
+
+    table.dataTable thead th, table.dataTable thead td {
+        border-bottom: 1px solid #c7c7c7 !important;
+    }
+
+    table.dataTable.no-footer {
+        border-bottom: 1px solid #c7c7c7 !important;
+    }
+
+.text-hover-success:hover {
+    color: #26ae61 !important;
+}
+
+.text-hover-danger:hover {
+    color: #dc3545 !important;
+}
+
 .text-hover-primary:hover {
     color: #0d6efd !important;
+}
+
+.table-tr-light {
+    border-bottom: 1px solid #d8d8d8 !important;
+}
+
+button, input, optgroup, select, textarea {
+    border-radius: 5px;
+    border: 1px solid #c3c3c3;
 }
 /*--------------------------------------------------------------
 # Page Title
@@ -396,7 +431,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 1200px) {
     .logo {
-        width: 280px;
+        width: 247px;
     }
 }
 
@@ -416,7 +451,8 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.5s;
     z-index: 997;
     height: 60px;
-    box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.085);
+    /*    box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);*/
     background-color: #fff;
     padding-left: 20px;
     /* Toggle Sidebar Button */
@@ -633,8 +669,8 @@ h1, h2, h3, h4, h5, h6 {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #aab7cf transparent;
-    box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
     background-color: #fff;
+    border-right: 1px solid rgba(0,0,0,0.085)
 }
 
 @media (max-width: 1199px) {
@@ -704,9 +740,8 @@ h1, h2, h3, h4, h5, h6 {
         align-items: center;
         font-size: 14px;
         font-weight: 600;
-        color: #4154f1;
+        color: #575a7b;
         transition: 0.3;
-        background: #f6f9ff;
         padding: 10px 15px;
         border-radius: 4px;
     }
@@ -714,7 +749,7 @@ h1, h2, h3, h4, h5, h6 {
         .sidebar-nav .nav-link i {
             font-size: 16px;
             margin-right: 10px;
-            color: #4154f1;
+            color: #575a7b;
         }
 
         .sidebar-nav .nav-link.collapsed {
@@ -727,12 +762,21 @@ h1, h2, h3, h4, h5, h6 {
             }
 
         .sidebar-nav .nav-link:hover {
-            color: #4154f1;
-            background: #f6f9ff;
+            color: #26ae61;
+            background: #e9f7ef;
         }
 
             .sidebar-nav .nav-link:hover i {
-                color: #4154f1;
+                color: #26ae61;
+            }
+
+        .sidebar-nav .nav-link.active {
+            color: #26ae61;
+            background: #e9f7ef;
+        }
+
+            .sidebar-nav .nav-link.active i {
+                color: #26ae61;
             }
 
         .sidebar-nav .nav-link .bi-chevron-down {
@@ -778,203 +822,31 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Dashboard
 --------------------------------------------------------------*/
-/* Filter dropdown */
-.dashboard .filter {
-    position: absolute;
-    right: 0px;
-    top: 15px;
+.categorie-icon {
+    position: relative;
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    color: #1967D2;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: all 300ms ease;
 }
 
-    .dashboard .filter .icon {
-        color: #aab7cf;
-        padding-right: 20px;
-        padding-bottom: 5px;
-        transition: 0.3s;
-        font-size: 16px;
+    .categorie-icon i {
+        line-height: 70px;
+        font-size: 36px;
     }
 
-        .dashboard .filter .icon:hover, .dashboard .filter .icon:focus {
-            color: #4154f1;
-        }
-
-    .dashboard .filter .dropdown-header {
-        padding: 8px 15px;
-    }
-
-        .dashboard .filter .dropdown-header h6 {
-            text-transform: uppercase;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: #aab7cf;
-            margin-bottom: 0;
-            padding: 0;
-        }
-
-    .dashboard .filter .dropdown-item {
-        padding: 8px 15px;
-    }
-
-/* Info Cards */
-.dashboard .info-card {
-    padding-bottom: 10px;
+.light-red {
+    background: rgba(217,48,37,0.1);
+    color: #FF2200;
 }
 
-    .dashboard .info-card h6 {
-        font-size: 28px;
-        color: #012970;
-        font-weight: 700;
-        margin: 0;
-        padding: 0;
-    }
-
-.dashboard .card-icon {
-    font-size: 32px;
-    line-height: 0;
-    width: 64px;
-    height: 64px;
-    flex-shrink: 0;
-    flex-grow: 0;
+.light-blue {
+    background: rgba(25,103,210,0.1);
+    color: #1967D2;
 }
-
-.dashboard .sales-card .card-icon {
-    color: #4154f1;
-    background: #f6f6fe;
-}
-
-.dashboard .revenue-card .card-icon {
-    color: #2eca6a;
-    background: #e0f8e9;
-}
-
-.dashboard .customers-card .card-icon {
-    color: #ff771d;
-    background: #ffecdf;
-}
-
-/* Activity */
-.dashboard .activity {
-    font-size: 14px;
-}
-
-    .dashboard .activity .activity-item .activite-label {
-        color: #888;
-        position: relative;
-        flex-shrink: 0;
-        flex-grow: 0;
-        min-width: 64px;
-    }
-
-        .dashboard .activity .activity-item .activite-label::before {
-            content: "";
-            position: absolute;
-            right: -11px;
-            width: 4px;
-            top: 0;
-            bottom: 0;
-            background-color: #eceefe;
-        }
-
-    .dashboard .activity .activity-item .activity-badge {
-        margin-top: 3px;
-        z-index: 1;
-        font-size: 11px;
-        line-height: 0;
-        border-radius: 50%;
-        flex-shrink: 0;
-        border: 3px solid #fff;
-        flex-grow: 0;
-    }
-
-    .dashboard .activity .activity-item .activity-content {
-        padding-left: 10px;
-        padding-bottom: 20px;
-    }
-
-    .dashboard .activity .activity-item:first-child .activite-label::before {
-        top: 5px;
-    }
-
-    .dashboard .activity .activity-item:last-child .activity-content {
-        padding-bottom: 0;
-    }
-
-/* News & Updates */
-.dashboard .news .post-item + .post-item {
-    margin-top: 15px;
-}
-
-.dashboard .news img {
-    width: 80px;
-    float: left;
-    border-radius: 5px;
-}
-
-.dashboard .news h4 {
-    font-size: 15px;
-    margin-left: 95px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-    .dashboard .news h4 a {
-        color: #012970;
-        transition: 0.3s;
-    }
-
-        .dashboard .news h4 a:hover {
-            color: #4154f1;
-        }
-
-.dashboard .news p {
-    font-size: 14px;
-    color: #777777;
-    margin-left: 95px;
-}
-
-/* Recent Sales */
-.dashboard .recent-sales {
-    font-size: 14px;
-}
-
-    .dashboard .recent-sales .table thead {
-        background: #f6f6fe;
-    }
-
-        .dashboard .recent-sales .table thead th {
-            border: 0;
-        }
-
-    .dashboard .recent-sales .dataTable-top {
-        padding: 0 0 10px 0;
-    }
-
-    .dashboard .recent-sales .dataTable-bottom {
-        padding: 10px 0 0 0;
-    }
-
-/* Top Selling */
-.dashboard .top-selling {
-    font-size: 14px;
-}
-
-    .dashboard .top-selling .table thead {
-        background: #f6f6fe;
-    }
-
-        .dashboard .top-selling .table thead th {
-            border: 0;
-        }
-
-    .dashboard .top-selling .table tbody td {
-        vertical-align: middle;
-    }
-
-    .dashboard .top-selling img {
-        border-radius: 5px;
-        max-width: 60px;
-    }
-
 /*--------------------------------------------------------------
 # Icons list page
 --------------------------------------------------------------*/

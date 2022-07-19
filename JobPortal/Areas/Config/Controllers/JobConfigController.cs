@@ -98,8 +98,9 @@ namespace JobPortal.Areas.Config.Controllers
                 Problem("Record Not found to edit");
             }
 
-            return RedirectToAction(nameof(Index));
+            TempData["Success"] = "Record Updated Successfully!";
 
+            return RedirectToAction(nameof(Index));
         }
     }
 }

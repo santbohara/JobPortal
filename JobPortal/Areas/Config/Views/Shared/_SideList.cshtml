@@ -1,60 +1,59 @@
-﻿<div class="list-group card border-0">
-
-    <a 
-        asp-controller="JobConfig" 
-        asp-action="Index" 
-        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Category" ? "active" : "")" 
-        aria-current="true">
-        Job Category
-    </a>
-
-    <a 
-        asp-controller="JobQualifications" 
-        asp-action="Index"  
-        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Qualification" ? "active" : "")">
-        Job Qualifications
-    </a>
-    
-    <a 
-        asp-controller="JobType"
-        asp-action="Index"  
-        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Type" ? "active" : "")">
-        Job Type
-    </a>
-
-    <a 
-        asp-controller="SalaryType"
-        asp-action="Index"  
-        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Salary" ? "active" : "")">
-        Salary Type
-    </a>
-
-    <a 
-        asp-controller="SalaryRange"
-        asp-action="Index"  
-        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Range" ? "active" : "")">
-        Salary Range
-    </a>
-
-    <a 
-        asp-controller="JobExperience"
-        asp-action="Index"  
-        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Experience" ? "active" : "")">
-        Job Experience
-    </a>
-
-    <a 
-        asp-controller="JobShift"
-        asp-action="Index"  
-        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Shift" ? "active" : "")">
-        Job Shift
-    </a>
-
-    <a 
-        asp-controller="JobLevel"
-        asp-action="Index"  
-        class="list-group-item list-group-item-action @(ViewData["ActiveBtn"] == "Level" ? "active" : "")">
-        Job Level
-    </a>
-
-</div>
+﻿<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a asp-controller="JobConfig"
+           asp-action="Index"
+           class="nav-link @(ViewData["ActiveBtn"] == "Category" ? "active" : "")"
+           aria-current="true">
+            Job Category
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-controller="JobQualifications"
+           asp-action="Index"
+           class="nav-link @(ViewData["ActiveBtn"] == "Qualification" ? "active" : "")">
+            Job Qualifications
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-controller="JobType"
+           asp-action="Index"
+           class="nav-link @(ViewData["ActiveBtn"] == "Type" ? "active" : "")">
+            Job Type
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-controller="SalaryType"
+           asp-action="Index"
+           class="nav-link @(ViewData["ActiveBtn"] == "Salary" ? "active" : "")">
+            Salary Type
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-controller="SalaryRange"
+           asp-action="Index"
+           class="nav-link @(ViewData["ActiveBtn"] == "Range" ? "active" : "")">
+            Salary Range
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-controller="JobExperience"
+           asp-action="Index"
+           class="nav-link @(ViewData["ActiveBtn"] == "Experience" ? "active" : "")">
+            Job Experience
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-controller="JobShift"
+           asp-action="Index"
+           class="nav-link @(ViewData["ActiveBtn"] == "Shift" ? "active" : "")">
+            Job Shift
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-controller="JobLevel"
+           asp-action="Index"
+           class="nav-link @(ViewData["ActiveBtn"] == "Level" ? "active" : "")">
+            Job Level
+        </a>
+    </li>
+</ul>
