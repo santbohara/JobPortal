@@ -1,4 +1,4 @@
-﻿@model JobPortal.Areas.Jobs.ViewModel.AddViewModel;
+﻿@model JobPortal.Areas.Jobs.ViewModel.JobViewModel;
 
 @{
     ViewData["Title"] = "Add Job";
@@ -42,104 +42,63 @@
                     <div class="mb-3 col-md-4">
 
                         <label class="form-label">Application Deadline</label>
-                        <input asp-for="@Model.ExpireDate" class="form-control"/>
+                        <input asp-for="ExpireDate" class="form-control"/>
                         <span asp-validation-for="ExpireDate" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3 col-md-4">
 
                         <label class="form-label">Job Category</label>
-                        <select asp-for="Category" class="form-control selectpicker" data-live-search="true" title="Select...">
-                            @foreach (var item in Model.JobCategories)
-                            {
-                                <option value="@item.Id">@item.Title</option>
-                            }
-                        </select>
+                        <select asp-for="Category" asp-items="Model.JobCategories" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
                         <span asp-validation-for="Category" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3 col-md-4">
 
                         <label class="form-label">Job Qualification</label>
-                        <select asp-for="JobQualification" class="form-control selectpicker" data-live-search="true" title="Select...">
-                            @foreach (var item in Model.JobQualifications)
-                            {
-                                <option value="@item.Id">@item.Title</option>
-                            }
-                        </select>
+                        <select asp-for="JobQualification" asp-items="Model.JobQualifications" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
                         <span asp-validation-for="JobQualification" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3 col-md-4">
 
                         <label class="form-label">Job Type</label>
-                        <select asp-for="JobType" class="form-control selectpicker" data-live-search="true" title="Select...">
-                            @foreach (var item in Model.JobTypes)
-                            {
-                                <option value="@item.Id">@item.Title</option>
-                            }
-                        </select>
+                        <select asp-for="JobType" asp-items="Model.JobTypes" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
                         <span asp-validation-for="JobType" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3 col-md-4">
 
                         <label class="form-label">Salary Type</label>
-                        <select asp-for="SalaryType" class="form-control selectpicker" data-live-search="true" title="Select...">
-                            @foreach (var item in Model.SalaryTypes)
-                            {
-                                <option value="@item.Id">@item.Title</option>
-                            }
-                        </select>
+                        <select asp-for="SalaryType" asp-items="Model.SalaryTypes" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
                         <span asp-validation-for="SalaryType" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3 col-md-4">
 
                         <label class="form-label">Salary Range</label>
-                        <select asp-for="SalaryRange" class="form-control selectpicker" data-live-search="true" title="Select...">
-                            @foreach (var item in Model.SalaryRanges)
-                            {
-                                <option value="@item.Id">@item.Title</option>
-                            }
-                        </select>
+                        <select asp-for="SalaryRange" asp-items="Model.SalaryRanges" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
                         <span asp-validation-for="SalaryRange" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3 col-md-4">
 
                         <label class="form-label">Job Experience</label>
-                        <select asp-for="JobExperience" class="form-control selectpicker" data-live-search="true" title="Select...">
-                            <option>Select....</option>
-                            @foreach (var item in Model.JobExperiences)
-                            {
-                                <option value="@item.Id">@item.Title</option>
-                            }
-                        </select>
+                        <select asp-for="JobExperience" asp-items="Model.JobExperiences" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
                         <span asp-validation-for="JobExperience" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3 col-md-4">
 
                         <label class="form-label">Job Shift</label>
-                        <select asp-for="JobShift" class="form-control selectpicker" data-live-search="true" title="Select...">
-                            @foreach (var item in Model.JobShifts)
-                            {
-                                <option value="@item.Id">@item.Title</option>
-                            }
-                        </select>
+                        <select asp-for="JobShift" asp-items="Model.JobShifts" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
                         <span asp-validation-for="JobShift" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3 col-md-4">
 
                         <label class="form-label">Job Level</label>
-                        <select asp-for="JobLevel" class="form-control selectpicker" data-live-search="true" title="Select...">
-                            @foreach (var item in Model.JobLevels)
-                            {
-                                <option value="@item.Id">@item.Title</option>
-                            }
-                        </select>
+                        <select asp-for="JobLevel" asp-items="Model.JobLevels" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
                         <span asp-validation-for="JobLevel" class="text-danger"></span>
                     </div>
 

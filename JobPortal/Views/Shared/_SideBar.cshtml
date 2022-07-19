@@ -18,13 +18,13 @@
             </a>
             <ul id="jobs-nav" class="nav-content collapse @(ViewData["ActiveNav"] == "Jobs" ? "show" : "")" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-area="Jobs" asp-controller="Add" asp-action="Index" class="nav-link">
+                    <a asp-area="Jobs" asp-controller="Job" asp-action="Add" class="nav-link">
                         <i class="fa fa-caret-right"></i>
                         <span>Add Job</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-area="Jobs" asp-controller="JobsList" asp-action="Index" class="nav-link">
+                    <a asp-area="Jobs" asp-controller="Job" asp-action="Index" class="nav-link">
                         <i class="fa fa-caret-right"></i>
                         <span>Job List</span>
                     </a>

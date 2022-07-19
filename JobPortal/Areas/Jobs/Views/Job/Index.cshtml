@@ -1,4 +1,4 @@
-﻿@model IEnumerable<JobPortal.Areas.Jobs.Models.JobsList>
+﻿@model IEnumerable<JobPortal.Areas.Jobs.Models.Job>
 
 @{
     ViewData["Title"] = "Job List";
@@ -67,7 +67,7 @@
                         </td>
                         <td class="text-center">
                             <a href="" class="text-muted text-hover-primary"><i class="fs-4 bi bi-clipboard-check" title="Copy Link"></i></a>
-                            <a href="" class="text-muted text-hover-primary"><i class="fs-4 bi bi-pencil-square" title="Edit"></i></a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="text-muted text-hover-primary"><i class="fs-4 bi bi-pencil-square" title="Edit"></i></a>
                             <a href="" class="text-muted text-hover-primary"><i class="fs-4 bi bi-info-square" title="View"></i></a>
                         </td>
                     </tr>

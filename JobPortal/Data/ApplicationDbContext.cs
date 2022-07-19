@@ -46,7 +46,7 @@ namespace JobPortal.Data
             });
         }
 
-        public DbSet<JobsList> JobsList { get; set; }
+        public DbSet<Job> Job { get; set; }
         public DbSet<JobCategory> JobCategory { get; set; }
         public DbSet<JobQualification> JobQualification { get; set; }
         public DbSet<JobType> JobType { get; set; }

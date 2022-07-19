@@ -1,4 +1,4 @@
-﻿@model JobPortal.Areas.Jobs.Models.JobsList
+﻿@model JobPortal.Areas.Jobs.Models.Job
 
 @{
     Layout = null;
@@ -30,10 +30,10 @@
             @Html.DisplayFor(model => model.Category)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.JobQualifications)
+            @Html.DisplayNameFor(model => model.JobQualification)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.JobQualifications)
+            @Html.DisplayFor(model => model.JobQualification)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.JobType)

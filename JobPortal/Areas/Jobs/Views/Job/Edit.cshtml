@@ -1,0 +1,130 @@
+﻿@model JobPortal.Areas.Jobs.ViewModel.JobViewModel;
+@{
+    ViewData["Title"] = "Job List";
+    ViewData["ActiveNav"] = "Jobs";
+}
+
+<div>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Dashboard</li>
+            <li class="breadcrumb-item">Jobs</li>
+            <li class="breadcrumb-item active">@ViewData["Title"]</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-md-8">
+
+    <partial name="_Alert" />
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <form asp-action="Edit">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="row">
+
+                    <div class="mb-3 col-md-12">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="ExpireDate" class="control-label"></label>
+                        <input asp-for="ExpireDate" class="form-control" />
+                        <span asp-validation-for="ExpireDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label class="form-label">Job Category</label>
+                        <select asp-for="Category" asp-items="Model.JobCategories" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label class="form-label">Job Qualification</label>
+                        <select asp-for="JobQualification" asp-items="Model.JobQualifications" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                        <span asp-validation-for="JobQualification" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label asp-for="JobType" class="form-label">Job Type</label>
+                        <select asp-for="JobType" asp-items="Model.JobTypes" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                        <span asp-validation-for="JobType" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label asp-for="SalaryType" class="form-label">Salary Type</label>
+                        <select asp-for="SalaryType" asp-items="Model.SalaryTypes" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                        <span asp-validation-for="SalaryType" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label asp-for="SalaryRange" class="form-label">Salary Range</label>
+                        <select asp-for="SalaryRange" asp-items="Model.SalaryRanges" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                        <span asp-validation-for="SalaryRange" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label asp-for="JobExperience" class="form-label">Job Type</label>
+                        <select asp-for="JobExperience" asp-items="Model.JobExperiences" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                        <span asp-validation-for="JobExperience" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label class="form-label">Job Shift</label>
+                        <select asp-for="JobShift" asp-items="Model.JobShifts" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                        <span asp-validation-for="JobShift" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+
+                        <label asp-for="JobLevel" class="form-label">Job Type</label>
+                        <select asp-for="JobLevel" asp-items="Model.JobLevels" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                        <span asp-validation-for="JobLevel" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-12">
+
+                        <label class="form-label">Job Description</label>
+                        <textarea asp-for="JobDescription" class="form-control" rows="6" ></textarea>
+                        <span asp-validation-for="JobDescription" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-12">
+
+                        <label class="form-label">Job Specification</label>
+                        <textarea asp-for="JobSpecification" class="form-control" rows="6" ></textarea>
+                        <span asp-validation-for="JobSpecification" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="IsPublished" /> @Html.DisplayNameFor(model => model.IsPublished)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" value="Update" class="btn btn-primary">Update</button> <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>
+

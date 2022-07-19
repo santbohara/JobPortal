@@ -1,10 +1,14 @@
 ﻿using JobPortal.Areas.Config.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace JobPortal.Areas.Jobs.ViewModel
 {
-    public class AddViewModel
+    public class JobViewModel
     {
+        [Key]
+        public Guid Id { get; set; }
+
         [Required]
         public string Title { get; set; }
 
@@ -35,8 +39,7 @@ namespace JobPortal.Areas.Jobs.ViewModel
         [Required]
         public string JobLevel { get; set; }
 
-        [Required]
-        public string CreatedBy { get; set; }
+        public string? CreatedBy { get; set; }
 
         [Required]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
@@ -49,20 +52,22 @@ namespace JobPortal.Areas.Jobs.ViewModel
         [Display(Name = "Job Specification")]
         public string JobSpecification { get; set; }
 
-        public List<JobCategory> JobCategories { get; set; }
+        public bool IsPublished { get; set; }
 
-        public List<JobQualification> JobQualifications { get; set; }
+        public List<SelectListItem>? JobCategories { get; set; }
 
-        public List<JobType> JobTypes { get; set; }
+        public List<SelectListItem>? JobQualifications { get; set; }
 
-        public List<SalaryType> SalaryTypes { get; set; }
+        public List<SelectListItem>? JobTypes { get; set; }
 
-        public List<SalaryRange> SalaryRanges { get; set; }
+        public List<SelectListItem>? SalaryTypes { get; set; }
 
-        public List<JobExperience> JobExperiences { get; set; }
+        public List<SelectListItem>? SalaryRanges { get; set; }
 
-        public List<JobShift> JobShifts { get; set; }
+        public List<SelectListItem>? JobExperiences { get; set; }
 
-        public List<JobLevel> JobLevels { get; set; }
+        public List<SelectListItem>? JobShifts { get; set; }
+
+        public List<SelectListItem>? JobLevels { get; set; }
     }
 }

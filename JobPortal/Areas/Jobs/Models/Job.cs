@@ -2,7 +2,7 @@
 
 namespace JobPortal.Areas.Jobs.Models
 {
-    public class JobsList
+    public class Job
     {
         [Key]
         public Guid Id { get; set; }
@@ -14,7 +14,7 @@ namespace JobPortal.Areas.Jobs.Models
         public string Category { get; set; }
 
         [Required]
-        public string JobQualifications { get; set; }
+        public string JobQualification { get; set; }
 
         [Required]
         public string JobType { get; set; }
@@ -42,6 +42,10 @@ namespace JobPortal.Areas.Jobs.Models
 
         [Required]
         public string CreatedBy { get; set; }
+
+        public string JobDescription { get; set; }
+
+        public string JobSpecification { get; set; }
 
         [Required]
         public DateTime CreatedAt { get; set; }
