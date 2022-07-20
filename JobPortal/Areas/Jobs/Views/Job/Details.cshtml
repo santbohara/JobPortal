@@ -1,21 +1,31 @@
 ﻿@model JobPortal.Areas.Jobs.Models.Job
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Job Details";
+    ViewData["ActiveNav"] = "Jobs";
 }
 
-<!DOCTYPE html>
+<div class="d-flex justify-content-between">
+    <div class="pt-3">
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Dashboard</li>
+                <li class="breadcrumb-item">Jobs</li>
+                <li class="breadcrumb-item">@ViewData["Title"]</li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <a asp-action="Index" class="nav-link pb-3 px-0">Back <i class="bi bi-arrow-right-short"></i></a>
+    </div>
+</div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
+<div class="col-md-12">
 
-<div>
-    <h4>JobsList</h4>
-    <hr />
+    <partial name="_Alert" />
+
+    @Html.ValidationSummary()
+
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
@@ -98,8 +108,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
-</body>
-</html>

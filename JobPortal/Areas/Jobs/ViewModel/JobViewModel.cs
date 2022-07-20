@@ -10,34 +10,44 @@ namespace JobPortal.Areas.Jobs.ViewModel
         public Guid Id { get; set; }
 
         [Required]
+        [Display(Name = "Job Title")]
         public string Title { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Application Deadline")]
         public DateTime? ExpireDate { get; set; }
 
         [Required]
+        [Display(Name = "Job Category")]
         public string Category { get; set; }
 
         [Required]
+        [Display(Name = "Job Qualification")]
         public string JobQualification { get; set; }
 
         [Required]
+        [Display(Name = "Job Type")]
         public string JobType { get; set; }
 
         [Required]
+        [Display(Name = "Salary Type")]
         public string SalaryType { get; set; }
 
         [Required]
+        [Display(Name = "Salary Range")]
         public string SalaryRange { get; set; }
 
         [Required]
+        [Display(Name = "Job Experience")]
         public string JobExperience { get; set; }
 
         [Required]
+        [Display(Name = "Job Shift")]
         public string JobShift { get; set; }
 
         [Required]
+        [Display(Name = "Job Level")]
         public string JobLevel { get; set; }
 
         public string? CreatedBy { get; set; }
@@ -53,6 +63,7 @@ namespace JobPortal.Areas.Jobs.ViewModel
         [Display(Name = "Job Specification")]
         public string JobSpecification { get; set; }
 
+        [Display(Name = "Publish")]
         public bool IsPublished { get; set; }
 
         public List<SelectListItem>? JobCategories { get; set; }

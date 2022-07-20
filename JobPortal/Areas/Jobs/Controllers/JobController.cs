@@ -1,12 +1,10 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JobPortal.Areas.Jobs.Models;
 using JobPortal.Data;
 using JobPortal.Models;
 using Microsoft.AspNetCore.Identity;
 using JobPortal.Areas.Jobs.ViewModel;
-using JobPortal.Areas.Config.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace JobPortal.Areas.Jobs.Controllers
@@ -24,11 +22,30 @@ namespace JobPortal.Areas.Jobs.Controllers
         }
 
         // GET: Jobs/JobsList
-        public async Task<IActionResult> Index()
+        public IActionResult Index(
+            string Category,
+            string JobQualification,
+            string JobExperience,
+            string Joblevel,
+            string PostedDateFrom,
+            string PostedDateTo
+        )
         {
-            return _context.Job != null ?
-                        View(await _context.Job.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.JobsList'  is null.");
+            var list = from j in _context.Job select j;
+
+            if (Category != null) list = list.Where(s => s.Category.Equals(Category));
+            if (JobQualification != null) list = list.Where(s => s.JobQualification.Equals(JobQualification));
+            if (JobExperience != null) list = list.Where(s => s.JobExperience.Equals(JobExperience));
+            if (Joblevel != null) list = list.Where(s => s.JobLevel.Equals(Joblevel));
+            if (PostedDateTo != null) list = list.Where(s => s.CreatedAt >= DateTime.Parse(PostedDateFrom) && s.CreatedAt <= DateTime.Parse(PostedDateTo));
+
+            var result = list.ToList(); // execute query
+
+            return View(result);
+
+            //return _context.Job != null ?
+            //            View(await _context.Job.OrderByDescending(x => x.CreatedAt).ToListAsync()) :
+            //            Problem("Entity set 'ApplicationDbContext.JobsList'  is null.");
         }
 
         public IActionResult Add()
@@ -52,9 +69,8 @@ namespace JobPortal.Areas.Jobs.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add([Bind("Title,Category,JobQualification,JobType,SalaryType,SalaryRange,JobExperience,JobShift,JobLevel,IsPublished,ExpireDate,JobDescription,JobSpecification")] JobViewModel input)
         {
-            var user = await _user.GetUserAsync(User);
 
-            if (input.ExpireDate == null)
+            if (!ModelState.IsValid)
             {
                 JobViewModel lists = new()
                 {
@@ -68,10 +84,10 @@ namespace JobPortal.Areas.Jobs.Controllers
                     JobLevels = JobLevelsList(),
                 };
 
-                TempData["Danger"] = "Application Deadline is required!";
-
                 return View(lists);
             }
+
+            var user = await _user.GetUserAsync(User);
 
             Job job = new()
             {
@@ -146,7 +162,7 @@ namespace JobPortal.Areas.Jobs.Controllers
                 JobExperience = edit.JobExperience,
                 JobShift = edit.JobShift,
                 JobLevel = edit.JobLevel,
-                IsPublished = false,
+                IsPublished = edit.IsPublished,
                 ExpireDate = (DateTime)edit.ExpireDate,
                 JobDescription = edit.JobDescription,
                 JobSpecification = edit.JobSpecification,
@@ -164,8 +180,6 @@ namespace JobPortal.Areas.Jobs.Controllers
         }
 
         // POST: Jobs/JobsList/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([Bind("Id,Title,Category,JobQualification,JobType,SalaryType,SalaryRange,JobExperience,JobShift,JobLevel,IsPublished,ExpireDate,JobDescription,JobSpecification")] JobViewModel job)
@@ -182,24 +196,45 @@ namespace JobPortal.Areas.Jobs.Controllers
                 }
                 else
                 {
-                    abc.Title = job.Title;
-                    abc.ExpireDate = (DateTime)job.ExpireDate;
-                    abc.JobDescription = job.JobDescription;
-                    abc.JobSpecification = job.JobSpecification;
-                    abc.Category = job.Category;
-                    abc.JobQualification = job.JobQualification;
-                    abc.JobType = job.JobType;
-                    abc.SalaryType = job.SalaryType;
-                    abc.SalaryRange = job.SalaryRange;
-                    abc.JobExperience = job.JobExperience;
-                    abc.JobShift = job.JobShift;
-                    abc.JobLevel = job.JobLevel;
-                    abc.IsPublished = job.IsPublished;
-                    abc.CreatedBy = user.UserName;
 
-                    _context.Update(abc);
-                    await _context.SaveChangesAsync();
+                    if (!ModelState.IsValid)
+                    {
+                        JobViewModel lists = new()
+                        {
+                            JobCategories = JobCategoryList(),
+                            JobQualifications = JobQualificationsList(),
+                            JobTypes = JobTypesList(),
+                            SalaryTypes = SalaryTypesList(),
+                            SalaryRanges = SalaryRangesList(),
+                            JobExperiences = JobExperiencesList(),
+                            JobShifts = JobShiftsList(),
+                            JobLevels = JobLevelsList(),
+                        };
 
+                        return View(lists);
+                    }
+                    else
+                    {
+                        abc.Title = job.Title;
+                        abc.ExpireDate = (DateTime)job.ExpireDate;
+                        abc.JobDescription = job.JobDescription;
+                        abc.JobSpecification = job.JobSpecification;
+                        abc.Category = job.Category;
+                        abc.JobQualification = job.JobQualification;
+                        abc.JobType = job.JobType;
+                        abc.SalaryType = job.SalaryType;
+                        abc.SalaryRange = job.SalaryRange;
+                        abc.JobExperience = job.JobExperience;
+                        abc.JobShift = job.JobShift;
+                        abc.JobLevel = job.JobLevel;
+                        abc.IsPublished = job.IsPublished;
+                        abc.CreatedBy = user.UserName;
+
+                        _context.Update(abc);
+                        await _context.SaveChangesAsync();
+                    }
+
+                    TempData["Success"] = "Job updated successfully!";
                     return RedirectToAction(nameof(Index));
                 }
             }

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<JobPortal.Areas.Jobs.Models.Job>
 
 @{
-    ViewData["Title"] = "Job";
+    ViewData["Title"] = "Jobs";
     ViewData["ActiveNav"] = "Jobs";
 }
 
@@ -15,9 +15,97 @@
         </nav>
     </div>
     <div>
-        <a asp-area="Jobs" asp-controller="Job" asp-action="Add" class="btn btn-success">Post a Job</a>
+        <ul class="list-inline">
+            <li class="list-inline-item">
+                <button type="button" class="btn btn-outline-primary bg-primary-light" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-funnel"></i></button>
+            </li>
+            <li class="list-inline-item">
+                <a asp-area="Jobs" asp-controller="Job" asp-action="Add" class="btn btn-success">Post a Job</a>
+            </li>
+        </ul>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal right fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <form asp-action="Index" method="get">
+
+                    <div class="mb-3 col-md-12">
+                        <label class="form-label">Job Category</label>
+                        <input type="text" name="Category" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-12">
+                        <label class="form-label">Job Qualification</label>
+                        <input type="text" name="JobQualification" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-12">
+                        <label class="form-label">Job Experience</label>
+                        <input type="text" name="JobExperience" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-12">
+                        <label class="form-label">Job Level</label>
+                        <input type="text" name="Joblevel" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Posted Date From</label>
+                            <input type="text" name="PostedDateFrom" class="form-control DateTime" />
+                            <span class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Posted Date To</label>
+                            <input type="text" name="PostedDateTo" class="form-control DateTime" />
+                            <span class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="option1">
+                            <label class="form-check-label" for="inlineRadio1">Active</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="option2">
+                            <label class="form-check-label" for="inlineRadio2">Un-published</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" id="inlineRadio3" value="option3">
+                            <label class="form-check-label" for="inlineRadio3">Expired</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Filter</button>
+
+                    <a asp-action="Index" class="px-3"><i class="bi bi-x-circle"></i> Clear Filter</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="col-md-12">
 
@@ -25,26 +113,16 @@
 
     <div class="card shadow-none">
 
-        <div class="card-body table-custom">
-
-            @Html.ValidationSummary()
+        <div class="card-body table-custom table-responsive">
 
             <table class="table table-report">
 
                 <thead class="bg-light">
                     <tr>
-                        <th>
-                            Job Title
-                        </th>
-                        <th>
-                            Applications
-                        </th>
-                        <th>
-                            Deadline
-                        </th>
-                        <th>
-                            Status
-                        </th>
+                        <th>Job Title</th>
+                        <th>Applications</th>
+                        <th>Deadline</th>
+                        <th>Status</th>
                         <th data-orderable="false"></th>
                     </tr>
                 </thead>
@@ -75,7 +153,7 @@
                             <td class="text-center">
                                 <a href=""><i class="fs-5 bi bi-clipboard-check text-primary text-hover-success" title="Copy Link"></i></a>
                                 <a asp-action="Edit" asp-route-id="@item.Id"><i class="fs-5 bi bi-pencil-square text-primary text-hover-success" title="Edit"></i></a>
-                                <a href=""><i class="fs-5 bi bi-info-square text-primary text-hover-success" title="View"></i></a>
+                                <a asp-action="Details" asp-route-id="@item.Id"><i class="fs-5 bi bi-info-square text-primary text-hover-success" title="View"></i></a>
                             </td>
                         </tr>
                     }
