@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bootstrap-select {
-    border: 1px solid #ced4da !important;
+    border: solid 1px #1e9853 !important;
 }
 
 .table-custom table {
@@ -74,6 +74,7 @@ h1, h2, h3, h4, h5, h6 {
 
     .table-custom table td {
         padding: 25px 10px !important;
+        border-bottom: 1px solid #e4e4e4 !important;
     }
 
 .table-custom thead tr {
@@ -84,6 +85,10 @@ h1, h2, h3, h4, h5, h6 {
 table.dataTable {
     border-collapse: initial !important;
 }
+
+    table.dataTable tbody th, table.dataTable tbody td {
+        padding: 12px 10px !important;
+    }
 
     table.dataTable thead th, table.dataTable thead td {
         border-bottom: 1px solid #c7c7c7 !important;
@@ -113,6 +118,12 @@ button, input, optgroup, select, textarea {
     border-radius: 5px;
     border: 1px solid #c3c3c3;
 }
+
+.tox-statusbar__branding{
+    visibility: hidden;
+}
+
+
 /*--------------------------------------------------------------
 # Page Title
 --------------------------------------------------------------*/
@@ -291,116 +302,6 @@ button, input, optgroup, select, textarea {
     border-color: #d3d3d4;
 }
 
-/* Card */
-.card {
-    margin-bottom: 30px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
-}
-
-.card-header, .card-footer {
-    border-color: #ebeef4;
-    background-color: #fff;
-    color: #798eb3;
-    padding: 15px;
-}
-
-.card-title {
-    padding: 20px 0 15px 0;
-    font-size: 18px;
-    font-weight: 500;
-    color: #012970;
-    font-family: "Poppins", sans-serif;
-}
-
-    .card-title span {
-        color: #899bbd;
-        font-size: 14px;
-        font-weight: 400;
-    }
-
-.card-body {
-    padding: 0 20px 20px 20px;
-}
-
-.card-img-overlay {
-    background-color: rgba(255, 255, 255, 0.6);
-}
-
-/* Alerts */
-.alert-heading {
-    font-weight: 500;
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-}
-
-/* Close Button */
-.btn-close {
-    background-size: 25%;
-}
-
-    .btn-close:focus {
-        outline: 0;
-        box-shadow: none;
-    }
-
-/* Accordion */
-.accordion-item {
-    border: 1px solid #ebeef4;
-}
-
-.accordion-button:focus {
-    outline: 0;
-    box-shadow: none;
-}
-
-.accordion-button:not(.collapsed) {
-    color: #012970;
-    background-color: #f6f9ff;
-}
-
-.accordion-flush .accordion-button {
-    padding: 15px 0;
-    background: none;
-    border: 0;
-}
-
-    .accordion-flush .accordion-button:not(.collapsed) {
-        box-shadow: none;
-        color: #4154f1;
-    }
-
-.accordion-flush .accordion-body {
-    padding: 0 0 15px 0;
-    color: #3e4f6f;
-    font-size: 15px;
-}
-
-/* Breadcrumbs */
-.breadcrumb {
-    font-size: 14px;
-    font-family: "Nunito", sans-serif;
-    color: #899bbd;
-}
-
-    .breadcrumb a {
-        color: #899bbd;
-        transition: 0.3s;
-    }
-
-        .breadcrumb a:hover {
-            color: #51678f;
-        }
-
-    .breadcrumb .breadcrumb-item::before {
-        color: #899bbd;
-    }
-
-    .breadcrumb .active {
-        color: #51678f;
-    }
-
 /* Bordered Tabs */
 .nav-tabs-bordered {
     border-bottom: 2px solid #ebeef4;
@@ -421,6 +322,19 @@ button, input, optgroup, select, textarea {
             color: #4154f1;
             border-bottom: 2px solid #4154f1;
         }
+.nav-pills a {
+    color: #575a7b !important;
+}
+.nav-pills .active{
+    color: #FFF !important;
+}
+
+input.form-control, textarea.form-control, select.form-control {
+    border: solid 1px #1e9853 !important;
+    background-color: #e9f7ef !important;
+    transition: all 100ms ease !important;
+}
+
 
 /*--------------------------------------------------------------
 # Header
@@ -458,72 +372,6 @@ button, input, optgroup, select, textarea {
     /* Toggle Sidebar Button */
     /* Search Bar */
 }
-
-    .header .toggle-sidebar-btn {
-        font-size: 18px;
-        padding-left: 10px;
-        cursor: pointer;
-        color: #99abb4;
-    }
-
-    .header .search-bar {
-        min-width: 360px;
-        padding: 0 20px;
-    }
-
-@media (max-width: 1199px) {
-    .header .search-bar {
-        position: fixed;
-        top: 50px;
-        left: 0;
-        right: 0;
-        padding: 20px;
-        box-shadow: 0px 0px 15px 0px rgba(1, 41, 112, 0.1);
-        background: white;
-        z-index: 9999;
-        transition: 0.3s;
-        visibility: hidden;
-        opacity: 0;
-    }
-
-    .header .search-bar-show {
-        top: 60px;
-        visibility: visible;
-        opacity: 1;
-    }
-}
-
-.header .search-form {
-    width: 100%;
-}
-
-    .header .search-form input {
-        border: 0;
-        font-size: 14px;
-        color: #012970;
-        border: 1px solid rgba(1, 41, 112, 0.2);
-        padding: 7px 38px 7px 8px;
-        border-radius: 3px;
-        transition: 0.3s;
-        width: 100%;
-    }
-
-        .header .search-form input:focus, .header .search-form input:hover {
-            outline: none;
-            box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15);
-            border: 1px solid rgba(1, 41, 112, 0.3);
-        }
-
-    .header .search-form button {
-        border: 0;
-        padding: 0;
-        margin-left: -30px;
-        background: none;
-    }
-
-        .header .search-form button i {
-            color: #012970;
-        }
 
 /*--------------------------------------------------------------
 # Header Nav
@@ -847,95 +695,7 @@ button, input, optgroup, select, textarea {
     background: rgba(25,103,210,0.1);
     color: #1967D2;
 }
-/*--------------------------------------------------------------
-# Icons list page
---------------------------------------------------------------*/
-.iconslist {
-    display: grid;
-    max-width: 100%;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.25rem;
-    padding-top: 15px;
-}
 
-    .iconslist .icon {
-        background-color: #fff;
-        border-radius: 0.25rem;
-        text-align: center;
-        color: #012970;
-        padding: 15px 0;
-    }
-
-    .iconslist i {
-        margin: 0.25rem;
-        font-size: 2.5rem;
-    }
-
-    .iconslist .label {
-        font-family: var(--bs-font-monospace);
-        display: inline-block;
-        width: 100%;
-        overflow: hidden;
-        padding: 0.25rem;
-        font-size: 12px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: #666;
-    }
-
-/*--------------------------------------------------------------
-# Profie Page
---------------------------------------------------------------*/
-.profile .profile-card img {
-    max-width: 120px;
-}
-
-.profile .profile-card h2 {
-    font-size: 24px;
-    font-weight: 700;
-    color: #2c384e;
-    margin: 10px 0 0 0;
-}
-
-.profile .profile-card h3 {
-    font-size: 18px;
-}
-
-.profile .profile-card .social-links a {
-    font-size: 20px;
-    display: inline-block;
-    color: rgba(1, 41, 112, 0.5);
-    line-height: 0;
-    margin-right: 10px;
-    transition: 0.3s;
-}
-
-    .profile .profile-card .social-links a:hover {
-        color: #012970;
-    }
-
-.profile .profile-overview .row {
-    margin-bottom: 20px;
-    font-size: 15px;
-}
-
-.profile .profile-overview .card-title {
-    color: #012970;
-}
-
-.profile .profile-overview .label {
-    font-weight: 600;
-    color: rgba(1, 41, 112, 0.6);
-}
-
-.profile .profile-edit label {
-    font-weight: 600;
-    color: rgba(1, 41, 112, 0.6);
-}
-
-.profile .profile-edit img {
-    max-width: 120px;
-}
 
 /*--------------------------------------------------------------
 # F.A.Q Page
@@ -950,125 +710,6 @@ button, input, optgroup, select, textarea {
     color: #6980aa;
 }
 
-/*--------------------------------------------------------------
-# Contact
---------------------------------------------------------------*/
-.contact .info-box {
-    padding: 28px 30px;
-}
-
-    .contact .info-box i {
-        font-size: 38px;
-        line-height: 0;
-        color: #4154f1;
-    }
-
-    .contact .info-box h3 {
-        font-size: 20px;
-        color: #012970;
-        font-weight: 700;
-        margin: 20px 0 10px 0;
-    }
-
-    .contact .info-box p {
-        padding: 0;
-        line-height: 24px;
-        font-size: 14px;
-        margin-bottom: 0;
-    }
-
-.contact .php-email-form .error-message {
-    display: none;
-    color: #fff;
-    background: #ed3c0d;
-    text-align: left;
-    padding: 15px;
-    margin-bottom: 24px;
-    font-weight: 600;
-}
-
-.contact .php-email-form .sent-message {
-    display: none;
-    color: #fff;
-    background: #18d26e;
-    text-align: center;
-    padding: 15px;
-    margin-bottom: 24px;
-    font-weight: 600;
-}
-
-.contact .php-email-form .loading {
-    display: none;
-    background: #fff;
-    text-align: center;
-    padding: 15px;
-    margin-bottom: 24px;
-}
-
-    .contact .php-email-form .loading:before {
-        content: "";
-        display: inline-block;
-        border-radius: 50%;
-        width: 24px;
-        height: 24px;
-        margin: 0 10px -6px 0;
-        border: 3px solid #18d26e;
-        border-top-color: #eee;
-        -webkit-animation: animate-loading 1s linear infinite;
-        animation: animate-loading 1s linear infinite;
-    }
-
-.contact .php-email-form input, .contact .php-email-form textarea {
-    border-radius: 0;
-    box-shadow: none;
-    font-size: 14px;
-    border-radius: 0;
-}
-
-    .contact .php-email-form input:focus, .contact .php-email-form textarea:focus {
-        border-color: #4154f1;
-    }
-
-.contact .php-email-form input {
-    padding: 10px 15px;
-}
-
-.contact .php-email-form textarea {
-    padding: 12px 15px;
-}
-
-.contact .php-email-form button[type=submit] {
-    background: #4154f1;
-    border: 0;
-    padding: 10px 30px;
-    color: #fff;
-    transition: 0.4s;
-    border-radius: 4px;
-}
-
-    .contact .php-email-form button[type=submit]:hover {
-        background: #5969f3;
-    }
-
-@-webkit-keyframes animate-loading {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes animate-loading {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
 
 /*--------------------------------------------------------------
 # Error 404

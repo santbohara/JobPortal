@@ -1,74 +1,87 @@
 ﻿@model IEnumerable<JobPortal.Areas.Jobs.Models.Job>
 
 @{
-    ViewData["Title"] = "Job List";
+    ViewData["Title"] = "Job";
     ViewData["ActiveNav"] = "Jobs";
 }
 
-<div class="d-flex">
-    <a asp-area="Jobs" asp-controller="Job" asp-action="Add" class="btn btn-success">Post a Job</a>
+<div class="d-flex justify-content-between">
+    <div class="pt-3">
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Dashboard</li>
+                <li class="breadcrumb-item">@ViewData["Title"]</li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <a asp-area="Jobs" asp-controller="Job" asp-action="Add" class="btn btn-success">Post a Job</a>
+    </div>
 </div>
 
 <div class="col-md-12">
 
     <partial name="_Alert" />
 
-    <div class="row justify-content-between">
+    <div class="card shadow-none">
 
-        @Html.ValidationSummary()
+        <div class="card-body table-custom">
 
-        <table class="table table-bordered table-report border">
+            @Html.ValidationSummary()
 
-            <thead class="bg-light">
-                <tr>
-                    <th>
-                        Job Title
-                    </th>
-                    <th>
-                        Status
-                    </th>
-                    <th>
-                        Applications
-                    </th>
-                    <th>
-                        Deadline
-                    </th>
-                    <th data-orderable="false"></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+            <table class="table table-report">
+
+                <thead class="bg-light">
                     <tr>
-                        <td>
-                            <h6 class="fw-bold">@item.Title</h6>
-                            <small class="text-muted">Posted Date : @item.CreatedAt.ToString("yyyy-MM-dd")</small>
-                        </td>
-                        <td>
-                            @if (item.IsPublished == true)
-                            {
-                                <span class="badge bg-success">Active</span>
-                            }
-                            else
-                            {
-                                <span class="badge bg-warning">Not Publised</span>
-                            }
-                        </td>
-                        <td>
-                            <span class="badge bg-primary">0</span>
-                        </td>
-                        <td>
-                            @item.ExpireDate.ToString("yyyy-MM-dd")
-                        </td>
-                        <td class="text-center">
-                            <a href=""><i class="fs-4 bi bi-clipboard-check text-primary text-hover-success" title="Copy Link"></i></a>
-                            <a asp-action="Edit" asp-route-id="@item.Id"><i class="fs-4 bi bi-pencil-square text-primary text-hover-success" title="Edit"></i></a>
-                            <a href=""><i class="fs-4 bi bi-info-square text-primary text-hover-success" title="View"></i></a>
-                        </td>
+                        <th>
+                            Job Title
+                        </th>
+                        <th>
+                            Applications
+                        </th>
+                        <th>
+                            Deadline
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th data-orderable="false"></th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <h6 class="fw-bold">@item.Title</h6>
+                                <small class="text-muted">Posted Date : @item.CreatedAt.ToString("yyyy-MM-dd")</small>
+                            </td>
+                            <td>
+                                <span class="badge bg-primary">0</span>
+                            </td>
+                            <td>
+                                @item.ExpireDate.ToString("yyyy-MM-dd")
+                            </td>
+                            <td>
+                                @if (item.IsPublished == true)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning">Not Publised</span>
+                                }
+                            </td>
+                            <td class="text-center">
+                                <a href=""><i class="fs-4 bi bi-clipboard-check text-primary text-hover-success" title="Copy Link"></i></a>
+                                <a asp-action="Edit" asp-route-id="@item.Id"><i class="fs-4 bi bi-pencil-square text-primary text-hover-success" title="Edit"></i></a>
+                                <a href=""><i class="fs-4 bi bi-info-square text-primary text-hover-success" title="View"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @section scripts{

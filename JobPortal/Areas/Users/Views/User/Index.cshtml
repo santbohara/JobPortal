@@ -1,7 +1,21 @@
 ﻿@{
-    ViewData["Title"] = "Manage User";
+    ViewData["Title"] = "User";
     ViewData["ActiveNav"] = "Users";
 }
+
+<div class="d-flex justify-content-between">
+    <div class="pt-3">
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Dashboard</li>
+                <li class="breadcrumb-item">@ViewData["Title"]</li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <a asp-action="Add" class="btn btn-success">Add User</a>
+    </div>
+</div>
 
 <div class="col-md-12">
 
@@ -9,20 +23,11 @@
 
     <div class="card shadow-none">
 
-        <div class="card-header d-flex justify-content-between">
-            <div>
-                <i class="bi bi-table"></i><span> Lists</span>
-            </div>
-            <div>
-                <a asp-action="Add" class="btn btn-success">Add User</a>
-            </div>
-        </div>
-
         <div class="card-body table-responsive">
 
             @Html.ValidationSummary()
 
-            <table class="table table-bordered table-report border">
+            <table class="table table-report border">
 
                 <thead class="bg-secondary-light">
                     <tr>

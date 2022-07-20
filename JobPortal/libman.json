@@ -13,10 +13,6 @@
       "destination": "wwwroot/lib/bootstrap/"
     },
     {
-      "library": "bootstrap-icons@1.8.3",
-      "destination": "wwwroot/lib/bootstrap-icon/"
-    },
-    {
       "library": "datatables@1.10.21",
       "destination": "wwwroot/lib/datatables/"
     },
@@ -42,6 +38,10 @@
     {
       "library": "bootstrap-datepicker@1.9.0",
       "destination": "wwwroot/lib/bootstrap-datepicker/"
+    },
+    {
+      "library": "tinymce@6.1.0",
+      "destination": "wwwroot/lib/tinymce/"
     }
   ]
 }

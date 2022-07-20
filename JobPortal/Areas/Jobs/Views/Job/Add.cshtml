@@ -36,7 +36,7 @@
                     <div class="mb-3 col-md-4">
 
                         <label class="form-label">Application Deadline</label>
-                        <input asp-for="ExpireDate" class="form-control"/>
+                        <input asp-for="ExpireDate" class="form-control" />
                         <span asp-validation-for="ExpireDate" class="text-danger"></span>
                     </div>
 
@@ -99,14 +99,14 @@
                     <div class="mb-3 col-md-12">
 
                         <label class="form-label">Job Description</label>
-                        <textarea asp-for="JobDescription" class="form-control" rows="6" ></textarea>
+                        <textarea asp-for="JobDescription" class="form-control editor" rows="6"></textarea>
                         <span asp-validation-for="JobDescription" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3 col-md-12">
 
                         <label class="form-label">Job Specification</label>
-                        <textarea asp-for="JobSpecification" class="form-control" rows="6" ></textarea>
+                        <textarea asp-for="JobSpecification" class="form-control editor" rows="6"></textarea>
                         <span asp-validation-for="JobSpecification" class="text-danger"></span>
                     </div>
 
@@ -117,3 +117,11 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea.editor'
+        });
+    </script>
+}

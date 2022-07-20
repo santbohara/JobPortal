@@ -1,33 +1,39 @@
 ﻿@model JobPortal.Areas.Config.ViewModels.JobLevelViewModel
 
 @{
-    ViewData["Title"] = "Job Config";
+    ViewData["Title"] = "Job Level";
     ViewData["ActiveNav"] = "Config";
     ViewData["ActiveBtn"] = "Level";
 }
 
 <div class="col-12">
 
-    <div class="mb-4">
-        <partial name="_SideList" />
+    <div class="mb-4 border">
+        <partial name="_SubNav" />
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <div class="pt-3">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Dashboard</li>
+                    <li class="breadcrumb-item">Config</li>
+                    <li class="breadcrumb-item">@ViewData["Title"]</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addModel">Add New</button>
+        </div>
     </div>
 
     <partial name="_Alert" />
 
     <div class="card shadow-none">
 
-        <div class="card-header d-flex justify-content-between">
-            <div>
-                <i class="bi bi-table"></i><span> Lists</span>
-            </div>
-            <div>
-                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addModel">Add New</button>
-            </div>
-        </div>
-
         <div class="card-body table-responsive">
 
-            <table class="table table-bordered table-report border">
+            <table class="table table-report border">
                 <thead class="bg-secondary-light">
                     <tr>
                         <th width="30px">SN</th>
@@ -64,7 +70,7 @@
                             <td>@Html.DisplayFor(item => model.CreatedAt)</td>
                             <td>@Html.DisplayFor(item => model.CreatedBy)</td>
                             <td>
-                                <a href="#" class="text-primary" id="editLink" data-bs-toggle="modal" data-bs-target="#editModel" data-id="@Html.DisplayFor(item => model.Id)"><i class="fa fa-edit"></i></a>
+                                <a href="#" class="text-primary" id="editLink" data-bs-toggle="modal" data-bs-target="#editModel" data-id="@Html.DisplayFor(item => model.Id)"><i class="bi bi-pencil-square"></i></a>
                             </td>
                         </tr>
                     }
