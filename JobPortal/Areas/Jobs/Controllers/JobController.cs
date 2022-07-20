@@ -84,6 +84,8 @@ namespace JobPortal.Areas.Jobs.Controllers
                 JobExperience = input.JobExperience,
                 JobShift = input.JobShift,
                 JobLevel = input.JobLevel,
+                JobDescription = input.JobDescription,
+                JobSpecification = input.JobSpecification,
                 IsPublished = false,
                 ExpireDate = (DateTime)input.ExpireDate,
                 CreatedBy = user.UserName,
@@ -206,7 +208,7 @@ namespace JobPortal.Areas.Jobs.Controllers
                 if (!JobsListExists(job.Id))
                 {
                     return NotFound();
-    }
+                }
                 else
                 {
                     throw;
@@ -215,112 +217,112 @@ namespace JobPortal.Areas.Jobs.Controllers
         }
 
         private bool JobsListExists(Guid id)
-{
-    return (_context.Job?.Any(e => e.Id == id)).GetValueOrDefault();
-}
+        {
+            return (_context.Job?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
 
-private List<SelectListItem> JobCategoryList()
-{
-    var items = _context.JobCategory.Where(x => x.IsActive == true).ToList();
+        private List<SelectListItem> JobCategoryList()
+        {
+            var items = _context.JobCategory.Where(x => x.IsActive == true).ToList();
 
-    var itemsList = items.Select(x =>
-                    new SelectListItem
-                    {
-                        Text = x.Title,
-                        Value = x.Id.ToString()
-                    }).ToList();
+            var itemsList = items.Select(x =>
+                            new SelectListItem
+                            {
+                                Text = x.Title,
+                                Value = x.Id.ToString()
+                            }).ToList();
 
-    return itemsList;
-}
-private List<SelectListItem> JobQualificationsList()
-{
-    var items = _context.JobQualification.Where(x => x.IsActive == true).ToList();
+            return itemsList;
+        }
+        private List<SelectListItem> JobQualificationsList()
+        {
+            var items = _context.JobQualification.Where(x => x.IsActive == true).ToList();
 
-    var itemsList = items.Select(x =>
-                    new SelectListItem
-                    {
-                        Text = x.Title,
-                        Value = x.Id.ToString()
-                    }).ToList();
+            var itemsList = items.Select(x =>
+                            new SelectListItem
+                            {
+                                Text = x.Title,
+                                Value = x.Id.ToString()
+                            }).ToList();
 
-    return itemsList;
-}
-private List<SelectListItem> JobTypesList()
-{
-    var items = _context.JobType.Where(x => x.IsActive == true).ToList();
+            return itemsList;
+        }
+        private List<SelectListItem> JobTypesList()
+        {
+            var items = _context.JobType.Where(x => x.IsActive == true).ToList();
 
-    var itemsList = items.Select(x =>
-                    new SelectListItem
-                    {
-                        Text = x.Title,
-                        Value = x.Id.ToString()
-                    }).ToList();
+            var itemsList = items.Select(x =>
+                            new SelectListItem
+                            {
+                                Text = x.Title,
+                                Value = x.Id.ToString()
+                            }).ToList();
 
-    return itemsList;
-}
-private List<SelectListItem> SalaryTypesList()
-{
-    var items = _context.SalaryType.Where(x => x.IsActive == true).ToList();
+            return itemsList;
+        }
+        private List<SelectListItem> SalaryTypesList()
+        {
+            var items = _context.SalaryType.Where(x => x.IsActive == true).ToList();
 
-    var itemsList = items.Select(x =>
-                    new SelectListItem
-                    {
-                        Text = x.Title,
-                        Value = x.Id.ToString()
-                    }).ToList();
+            var itemsList = items.Select(x =>
+                            new SelectListItem
+                            {
+                                Text = x.Title,
+                                Value = x.Id.ToString()
+                            }).ToList();
 
-    return itemsList;
-}
-private List<SelectListItem> SalaryRangesList()
-{
-    var items = _context.SalaryRange.Where(x => x.IsActive == true).ToList();
+            return itemsList;
+        }
+        private List<SelectListItem> SalaryRangesList()
+        {
+            var items = _context.SalaryRange.Where(x => x.IsActive == true).ToList();
 
-    var itemsList = items.Select(x =>
-                    new SelectListItem
-                    {
-                        Text = x.Title,
-                        Value = x.Id.ToString()
-                    }).ToList();
+            var itemsList = items.Select(x =>
+                            new SelectListItem
+                            {
+                                Text = x.Title,
+                                Value = x.Id.ToString()
+                            }).ToList();
 
-    return itemsList;
-}
-private List<SelectListItem> JobExperiencesList()
-{
-    var items = _context.JobExperience.Where(x => x.IsActive == true).ToList();
+            return itemsList;
+        }
+        private List<SelectListItem> JobExperiencesList()
+        {
+            var items = _context.JobExperience.Where(x => x.IsActive == true).ToList();
 
-    var itemsList = items.Select(x =>
-                    new SelectListItem
-                    {
-                        Text = x.Title,
-                        Value = x.Id.ToString()
-                    }).ToList();
-    return itemsList;
-}
-private List<SelectListItem> JobShiftsList()
-{
-    var items = _context.JobShift.Where(x => x.IsActive == true).ToList();
+            var itemsList = items.Select(x =>
+                            new SelectListItem
+                            {
+                                Text = x.Title,
+                                Value = x.Id.ToString()
+                            }).ToList();
+            return itemsList;
+        }
+        private List<SelectListItem> JobShiftsList()
+        {
+            var items = _context.JobShift.Where(x => x.IsActive == true).ToList();
 
-    var itemsList = items.Select(x =>
-                    new SelectListItem
-                    {
-                        Text = x.Title,
-                        Value = x.Id.ToString()
-                    }).ToList();
+            var itemsList = items.Select(x =>
+                            new SelectListItem
+                            {
+                                Text = x.Title,
+                                Value = x.Id.ToString()
+                            }).ToList();
 
-    return itemsList;
-}
-private List<SelectListItem> JobLevelsList()
-{
-    var items = _context.JobLevel.Where(x => x.IsActive == true).ToList();
+            return itemsList;
+        }
+        private List<SelectListItem> JobLevelsList()
+        {
+            var items = _context.JobLevel.Where(x => x.IsActive == true).ToList();
 
-    var itemsList = items.Select(x =>
-                    new SelectListItem
-                    {
-                        Text = x.Title,
-                        Value = x.Id.ToString()
-                    }).ToList();
+            var itemsList = items.Select(x =>
+                            new SelectListItem
+                            {
+                                Text = x.Title,
+                                Value = x.Id.ToString()
+                            }).ToList();
 
-    return itemsList;
-}
+            return itemsList;
+        }
     }
 }

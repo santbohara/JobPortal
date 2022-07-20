@@ -5,120 +5,181 @@
     ViewData["ActiveNav"] = "Jobs";
 }
 
-<div>
-    <a asp-action="Index" class="nav-link pb-3 px-0"><i class="bi bi-arrow-left-short"></i> Back</a>
+<div class="d-flex justify-content-between">
+    <div class="pt-3">
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Dashboard</li>
+                <li class="breadcrumb-item">Jobs</li>
+                <li class="breadcrumb-item">@ViewData["Title"]</li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <a asp-action="Index" class="nav-link pb-3 px-0">Back <i class="bi bi-arrow-right-short"></i></a>
+    </div>
 </div>
 
 <div class="col-md-12">
 
     <partial name="_Alert" />
 
-    <div class="card shadow-none">
+    @Html.ValidationSummary()
 
-        <div class="card-body">
+    <div>
 
-            @Html.ValidationSummary()
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-selected="true">Info</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-selected="false">Details</button>
+            </li>
+        </ul>
 
-            <form asp-action="Add" method="post">
-
-                <div class="row">
-
-                    <div class="mb-3 col-md-12">
-
-                        <label asp-for="Title" class="form-label">Job Title</label>
-                        <input asp-for="Title" class="form-control" />
-                        <span asp-validation-for="Title" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="mb-3 col-md-4">
-
-                        <label class="form-label">Application Deadline</label>
-                        <input asp-for="ExpireDate" class="form-control" />
-                        <span asp-validation-for="ExpireDate" class="text-danger"></span>
-                    </div>
-
-                    <div class="mb-3 col-md-4">
-
-                        <label class="form-label">Job Category</label>
-                        <select asp-for="Category" asp-items="Model.JobCategories" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
-                        <span asp-validation-for="Category" class="text-danger"></span>
-                    </div>
-
-                    <div class="mb-3 col-md-4">
-
-                        <label class="form-label">Job Qualification</label>
-                        <select asp-for="JobQualification" asp-items="Model.JobQualifications" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
-                        <span asp-validation-for="JobQualification" class="text-danger"></span>
-                    </div>
-
-                    <div class="mb-3 col-md-4">
-
-                        <label class="form-label">Job Type</label>
-                        <select asp-for="JobType" asp-items="Model.JobTypes" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
-                        <span asp-validation-for="JobType" class="text-danger"></span>
-                    </div>
-
-                    <div class="mb-3 col-md-4">
-
-                        <label class="form-label">Salary Type</label>
-                        <select asp-for="SalaryType" asp-items="Model.SalaryTypes" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
-                        <span asp-validation-for="SalaryType" class="text-danger"></span>
-                    </div>
-
-                    <div class="mb-3 col-md-4">
-
-                        <label class="form-label">Salary Range</label>
-                        <select asp-for="SalaryRange" asp-items="Model.SalaryRanges" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
-                        <span asp-validation-for="SalaryRange" class="text-danger"></span>
-                    </div>
-
-                    <div class="mb-3 col-md-4">
-
-                        <label class="form-label">Job Experience</label>
-                        <select asp-for="JobExperience" asp-items="Model.JobExperiences" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
-                        <span asp-validation-for="JobExperience" class="text-danger"></span>
-                    </div>
-
-                    <div class="mb-3 col-md-4">
-
-                        <label class="form-label">Job Shift</label>
-                        <select asp-for="JobShift" asp-items="Model.JobShifts" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
-                        <span asp-validation-for="JobShift" class="text-danger"></span>
-                    </div>
-
-                    <div class="mb-3 col-md-4">
-
-                        <label class="form-label">Job Level</label>
-                        <select asp-for="JobLevel" asp-items="Model.JobLevels" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
-                        <span asp-validation-for="JobLevel" class="text-danger"></span>
-                    </div>
-
-                    <div class="mb-3 col-md-12">
-
-                        <label class="form-label">Job Description</label>
-                        <textarea asp-for="JobDescription" class="form-control editor" rows="6"></textarea>
-                        <span asp-validation-for="JobDescription" class="text-danger"></span>
-                    </div>
-
-                    <div class="mb-3 col-md-12">
-
-                        <label class="form-label">Job Specification</label>
-                        <textarea asp-for="JobSpecification" class="form-control editor" rows="6"></textarea>
-                        <span asp-validation-for="JobSpecification" class="text-danger"></span>
-                    </div>
-
-                </div>
-
-                <button type="submit" class="btn btn-success">Add Job</button>
-            </form>
-        </div>
     </div>
+
+    <form asp-action="Add" method="post">
+
+        <div class="tab-content">
+
+            <div class="tab-pane fade show active" id="info" role="tabpanel">
+
+                <div class="card  border-top-0 shadow-none">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between">
+
+                            <div></div>
+                            <div>
+                                <a href="#details" class="btn btn-outline-primary bg-primary-light tab-link">Next <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="mb-3 col-md-12">
+
+                                <label asp-for="Title" class="form-label">Job Title</label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="mb-3 col-md-4">
+
+                                <label class="form-label">Application Deadline</label>
+                                <input asp-for="ExpireDate" class="form-control" />
+                                <span asp-validation-for="ExpireDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+
+                                <label class="form-label">Job Category</label>
+                                <select asp-for="Category" asp-items="Model.JobCategories" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                                <span asp-validation-for="Category" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+
+                                <label class="form-label">Job Qualification</label>
+                                <select asp-for="JobQualification" asp-items="Model.JobQualifications" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                                <span asp-validation-for="JobQualification" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+
+                                <label class="form-label">Job Type</label>
+                                <select asp-for="JobType" asp-items="Model.JobTypes" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                                <span asp-validation-for="JobType" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+
+                                <label class="form-label">Salary Type</label>
+                                <select asp-for="SalaryType" asp-items="Model.SalaryTypes" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                                <span asp-validation-for="SalaryType" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+
+                                <label class="form-label">Salary Range</label>
+                                <select asp-for="SalaryRange" asp-items="Model.SalaryRanges" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                                <span asp-validation-for="SalaryRange" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+
+                                <label class="form-label">Job Experience</label>
+                                <select asp-for="JobExperience" asp-items="Model.JobExperiences" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                                <span asp-validation-for="JobExperience" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+
+                                <label class="form-label">Job Shift</label>
+                                <select asp-for="JobShift" asp-items="Model.JobShifts" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                                <span asp-validation-for="JobShift" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+
+                                <label class="form-label">Job Level</label>
+                                <select asp-for="JobLevel" asp-items="Model.JobLevels" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
+                                <span asp-validation-for="JobLevel" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="details" role="tabpanel">
+
+                <div class="card border-top-0 shadow-none">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between">
+
+                            <div></div>
+                            <div>
+                                <a href="#info" class="btn btn-outline-primary bg-primary-light tab-link"><i class="bi bi-arrow-left"></i> Previous</a>
+                                <button class="btn btn-outline-success bg-success-light" type="submit">Save <i class="bi bi-save"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 col-md-12">
+
+                            <label class="form-label">Job Description</label>
+                            <textarea asp-for="JobDescription" class="form-control editor" rows="6"></textarea>
+                            <span asp-validation-for="JobDescription" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3 col-md-12">
+
+                            <label class="form-label">Job Specification</label>
+                            <textarea asp-for="JobSpecification" class="form-control editor" rows="6"></textarea>
+                            <span asp-validation-for="JobSpecification" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 
 @section scripts{
+    <script>
+        $('.tab-link').on('click', function(event) {
+            event.preventDefault();
+            var target = $('[data-bs-toggle="tab"][data-bs-target="' + this.hash + '"]');
+            target.trigger('click');
+        });
+    </script>
     <script>
         tinymce.init({
             selector: 'textarea.editor'

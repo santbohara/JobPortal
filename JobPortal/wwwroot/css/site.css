@@ -14,7 +14,7 @@
 
 body {
     font-family: "Open Sans", sans-serif;
-    color: #444444;
+    background: #f8f9fa !important;
 }
 
 a {
@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bootstrap-select {
-    border: solid 1px #1e9853 !important;
+    border: solid 1px #c3c3c3 !important;
 }
 
 .table-custom table {
@@ -330,12 +330,14 @@ button, input, optgroup, select, textarea {
 }
 
 input.form-control, textarea.form-control, select.form-control {
-    border: solid 1px #1e9853 !important;
-    background-color: #e9f7ef !important;
+/*    border: solid 1px #1e9853 !important;*/
+/*    background-color: #e9f7ef !important;*/
     transition: all 100ms ease !important;
 }
 
-
+.tox-toolbar__primary {
+    background-position: center top 0 !important;
+}
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -372,7 +374,9 @@ input.form-control, textarea.form-control, select.form-control {
     /* Toggle Sidebar Button */
     /* Search Bar */
 }
-
+.toggle-sidebar-btn{
+    cursor: pointer;
+}
 /*--------------------------------------------------------------
 # Header Nav
 --------------------------------------------------------------*/

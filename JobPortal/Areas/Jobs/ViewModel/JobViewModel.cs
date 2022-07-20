@@ -12,6 +12,7 @@ namespace JobPortal.Areas.Jobs.ViewModel
         [Required]
         public string Title { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         public DateTime? ExpireDate { get; set; }
 
