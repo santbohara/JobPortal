@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace JobPortal.Areas.Jobs.Models
 {
@@ -49,6 +50,5 @@ namespace JobPortal.Areas.Jobs.Models
 
         [Required]
         public DateTime CreatedAt { get; set; }
-
     }
 }

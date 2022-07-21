@@ -27,25 +27,40 @@ namespace JobPortal.Areas.Jobs.Controllers
             string JobQualification,
             string JobExperience,
             string Joblevel,
-            string PostedDateFrom,
-            string PostedDateTo
+            bool? UnPublished,
+            DateTime? PostedDateFrom,
+            DateTime? PostedDateTo,
+            DateTime? Expired
         )
         {
-            var list = from j in _context.Job select j;
+            var filter = from j in _context.Job select j;
 
-            if (Category != null) list = list.Where(s => s.Category.Equals(Category));
-            if (JobQualification != null) list = list.Where(s => s.JobQualification.Equals(JobQualification));
-            if (JobExperience != null) list = list.Where(s => s.JobExperience.Equals(JobExperience));
-            if (Joblevel != null) list = list.Where(s => s.JobLevel.Equals(Joblevel));
-            if (PostedDateTo != null) list = list.Where(s => s.CreatedAt >= DateTime.Parse(PostedDateFrom) && s.CreatedAt <= DateTime.Parse(PostedDateTo));
+            if (Category != null) filter = filter.Where(s => s.Category.Equals(Category));
+            if (JobQualification != null) filter = filter.Where(s => s.JobQualification.Equals(JobQualification));
+            if (JobExperience != null) filter = filter.Where(s => s.JobExperience.Equals(JobExperience));
+            if (Joblevel != null) filter = filter.Where(s => s.JobLevel.Equals(Joblevel));
+            if (UnPublished != null) filter = filter.Where(s => s.IsPublished != UnPublished);
+            if (PostedDateFrom != null) filter = filter.Where(s => s.CreatedAt.Date >= PostedDateFrom && s.CreatedAt.Date <= PostedDateTo);
+            if (Expired != null) filter = filter.Where(s => s.ExpireDate.Date < DateTime.Today);
+            
+            //var d = DateTime.Today;
 
-            var result = list.ToList(); // execute query
+            //return Problem(d.ToString());
 
-            return View(result);
+            IndexViewModel lists = new()
+            {
+                JobCategories = JobCategoryList(),
+                JobQualifications = JobQualificationsList(),
+                JobTypes = JobTypesList(),
+                SalaryTypes = SalaryTypesList(),
+                SalaryRanges = SalaryRangesList(),
+                JobExperiences = JobExperiencesList(),
+                JobShifts = JobShiftsList(),
+                JobLevels = JobLevelsList(),
+                JobList = filter.ToList()
+            };
 
-            //return _context.Job != null ?
-            //            View(await _context.Job.OrderByDescending(x => x.CreatedAt).ToListAsync()) :
-            //            Problem("Entity set 'ApplicationDbContext.JobsList'  is null.");
+            return View(lists);
         }
 
         public IActionResult Add()
@@ -105,7 +120,7 @@ namespace JobPortal.Areas.Jobs.Controllers
                 IsPublished = false,
                 ExpireDate = (DateTime)input.ExpireDate,
                 CreatedBy = user.UserName,
-                CreatedAt = input.CreatedAt,
+                CreatedAt = (DateTime)input.CreatedAt,
 
             };
 

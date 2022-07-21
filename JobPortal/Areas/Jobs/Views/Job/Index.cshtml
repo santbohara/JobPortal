@@ -1,4 +1,4 @@
-﻿@model IEnumerable<JobPortal.Areas.Jobs.Models.Job>
+﻿@model JobPortal.Areas.Jobs.ViewModel.IndexViewModel
 
 @{
     ViewData["Title"] = "Jobs";
@@ -44,62 +44,56 @@
 
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Job Category</label>
-                        <input type="text" name="Category" class="form-control" />
-                        <span class="text-danger"></span>
+                        <select asp-for="Category" asp-items="Model.JobCategories" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
                     </div>
 
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Job Qualification</label>
-                        <input type="text" name="JobQualification" class="form-control" />
-                        <span class="text-danger"></span>
+                        <select asp-for="JobQualification" asp-items="Model.JobQualifications" class="form-control selectpicker" data-live-search="true" title="Select..." ></select>
                     </div>
 
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Job Experience</label>
-                        <input type="text" name="JobExperience" class="form-control" />
-                        <span class="text-danger"></span>
+                        <select asp-for="JobExperience" asp-items="Model.JobExperiences"  class="form-control selectpicker" data-live-search="true" title="Select..." ></select>
                     </div>
 
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Job Level</label>
-                        <input type="text" name="Joblevel" class="form-control" />
-                        <span class="text-danger"></span>
+                        <select asp-for="JobLevel" asp-items="Model.JobLevels" class="form-control selectpicker" data-live-search="true" title="Select..." ></select>
                     </div>
 
                     <div class="row">
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Posted Date From</label>
-                            <input type="text" name="PostedDateFrom" class="form-control DateTime" />
-                            <span class="text-danger"></span>
+                            <input type="date" name="PostedDateFrom" class="form-control DateTime" />
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Posted Date To</label>
-                            <input type="text" name="PostedDateTo" class="form-control DateTime" />
-                            <span class="text-danger"></span>
+                            <input type="date" name="PostedDateTo" class="form-control DateTime" />
                         </div>
 
                     </div>
 
                     <div class="mb-3">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="option1">
+                            <input class="form-check-input" type="radio" name="IsActive" id="inlineRadio1" value="true">
                             <label class="form-check-label" for="inlineRadio1">Active</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="option2">
+                            <input class="form-check-input" type="radio" name="UnPublished" id="inlineRadio2" value="true">
                             <label class="form-check-label" for="inlineRadio2">Un-published</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="inlineRadio3" value="option3">
+                            <input class="form-check-input" type="radio" name="Expired" id="inlineRadio3" value="true">
                             <label class="form-check-label" for="inlineRadio3">Expired</label>
                         </div>
                     </div>
-                    <button class="btn btn-primary">Filter</button>
+
+                    <button type="submit" class="btn btn-primary">Filter</button>
 
                     <a asp-action="Index" class="px-3"><i class="bi bi-x-circle"></i> Clear Filter</a>
-
                 </form>
             </div>
         </div>
@@ -127,7 +121,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.JobList)
                     {
                         <tr>
                             <td>
@@ -174,5 +168,8 @@
                 "autoWidth": true
             });
         });
+    </script>
+    <script>
+        document.getElementByClassName("DateTime").value = "";
     </script>
 }
