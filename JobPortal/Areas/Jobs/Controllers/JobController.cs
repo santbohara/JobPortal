@@ -399,6 +399,8 @@ namespace JobPortal.Areas.Jobs.Controllers
         }
         public string GetSlug(string Title)
         {
+            string? finalSlug = null;
+
             //Slug helper
             SlugHelper helper = new();
 
@@ -406,10 +408,22 @@ namespace JobPortal.Areas.Jobs.Controllers
             var slug = helper.GenerateSlug(Title);
 
             //Get last ID to concatenate in slug for uniqueness of slug
-            var id = _context.Job.OrderByDescending(a => a.Id).FirstOrDefault();
+            var lastId = _context.Job.OrderByDescending(a => a.Id).FirstOrDefault();
 
             //concatenate id and slug
-            var finalSlug = slug + "-" + id.Id;
+            if(lastId == null)
+            {
+                finalSlug = slug;
+            }
+            else
+            {
+                //Get Last id and increament by 1
+                int id = lastId.Id;
+
+                var NewId = id + 1;
+
+                finalSlug = slug + "-" + NewId;
+            }
 
             //Also re-check if final slug is already being used
             var slugCheck = from s in _context.Job.Where(s => s.Slug == finalSlug) select s;
