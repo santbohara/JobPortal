@@ -72,7 +72,7 @@
                             <div class="mb-3 col-md-4">
 
                                 <label class="form-label">Application Deadline</label>
-                                <input asp-for="ExpireDate" class="form-control DateTime" id="DateTime" required="required" />
+                                <input asp-for="ExpireDate" onfocus="this.showPicker()" class="form-control DateTime" id="DateTime" required="required" />
                                 <span asp-validation-for="ExpireDate" class="text-danger"></span>
                             </div>
 

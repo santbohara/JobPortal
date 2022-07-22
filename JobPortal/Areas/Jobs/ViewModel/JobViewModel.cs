@@ -7,7 +7,9 @@ namespace JobPortal.Areas.Jobs.ViewModel
     public class JobViewModel
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
+
+        public string? Slug { get; set; }
 
         [Required]
         [Display(Name = "Job Title")]

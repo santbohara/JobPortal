@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobPortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220716164843_JobTabelRename")]
-    partial class JobTabelRename
+    [Migration("20220721183419_FreshTables")]
+    partial class FreshTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -224,14 +224,17 @@ namespace JobPortal.Migrations
                     b.ToTable("SalaryType");
                 });
 
-            modelBuilder.Entity("JobPortal.Areas.Jobs.Models.JobsList", b =>
+            modelBuilder.Entity("JobPortal.Areas.Jobs.Models.Job", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Category")
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -246,29 +249,45 @@ namespace JobPortal.Migrations
                     b.Property<bool>("IsPublished")
                         .HasColumnType("bit");
 
-                    b.Property<int>("JobExperience")
-                        .HasColumnType("int");
+                    b.Property<string>("JobDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JobLevel")
-                        .HasColumnType("int");
+                    b.Property<string>("JobExperience")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JobQualifications")
-                        .HasColumnType("int");
+                    b.Property<string>("JobLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JobShift")
-                        .HasColumnType("int");
+                    b.Property<string>("JobQualification")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JobType")
-                        .HasColumnType("int");
+                    b.Property<string>("JobShift")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SalaryRange")
-                        .HasColumnType("int");
+                    b.Property<string>("JobSpecification")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SalaryType")
-                        .HasColumnType("int");
+                    b.Property<string>("JobType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("SalaryRange")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SalaryType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -276,7 +295,7 @@ namespace JobPortal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("JobsList");
+                    b.ToTable("Job");
                 });
 
             modelBuilder.Entity("JobPortal.Models.AdminUser", b =>

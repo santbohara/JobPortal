@@ -6,6 +6,7 @@ using JobPortal.Models;
 using Microsoft.AspNetCore.Identity;
 using JobPortal.Areas.Jobs.ViewModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Slugify;
 
 namespace JobPortal.Areas.Jobs.Controllers
 {
@@ -27,10 +28,11 @@ namespace JobPortal.Areas.Jobs.Controllers
             string JobQualification,
             string JobExperience,
             string Joblevel,
-            bool? UnPublished,
+            bool? IsActive,
+            bool? NotPublished,
             DateTime? PostedDateFrom,
             DateTime? PostedDateTo,
-            DateTime? Expired
+            bool? Expired
         )
         {
             var filter = from j in _context.Job select j;
@@ -39,13 +41,12 @@ namespace JobPortal.Areas.Jobs.Controllers
             if (JobQualification != null) filter = filter.Where(s => s.JobQualification.Equals(JobQualification));
             if (JobExperience != null) filter = filter.Where(s => s.JobExperience.Equals(JobExperience));
             if (Joblevel != null) filter = filter.Where(s => s.JobLevel.Equals(Joblevel));
-            if (UnPublished != null) filter = filter.Where(s => s.IsPublished != UnPublished);
-            if (PostedDateFrom != null) filter = filter.Where(s => s.CreatedAt.Date >= PostedDateFrom && s.CreatedAt.Date <= PostedDateTo);
-            if (Expired != null) filter = filter.Where(s => s.ExpireDate.Date < DateTime.Today);
-            
-            //var d = DateTime.Today;
+            if (IsActive != null) filter = filter.Where(s => s.IsPublished == IsActive && s.ExpireDate.Date > DateTime.Today);
+            if (NotPublished != null) filter = filter.Where(s => s.IsPublished != NotPublished);
+            if (PostedDateFrom != null && PostedDateTo != null) filter = filter.Where(s => s.CreatedAt.Date >= PostedDateFrom && s.CreatedAt.Date <= PostedDateTo);
+            if (Expired != null) filter = filter.Where(s => s.ExpireDate.Date < DateTime.Today && s.IsPublished == true);
 
-            //return Problem(d.ToString());
+            //var d = DateTime.Today;
 
             IndexViewModel lists = new()
             {
@@ -84,7 +85,6 @@ namespace JobPortal.Areas.Jobs.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add([Bind("Title,Category,JobQualification,JobType,SalaryType,SalaryRange,JobExperience,JobShift,JobLevel,IsPublished,ExpireDate,JobDescription,JobSpecification")] JobViewModel input)
         {
-
             if (!ModelState.IsValid)
             {
                 JobViewModel lists = new()
@@ -104,9 +104,33 @@ namespace JobPortal.Areas.Jobs.Controllers
 
             var user = await _user.GetUserAsync(User);
 
+            //Get Slug
+            var slug = GetSlug(input.Title);
+
+            if(slug == null)
+            {
+                TempData["Danger"] = "Slug already used, try with new Job Title";
+
+                JobViewModel lists = new()
+                {
+                    JobCategories = JobCategoryList(),
+                    JobQualifications = JobQualificationsList(),
+                    JobTypes = JobTypesList(),
+                    SalaryTypes = SalaryTypesList(),
+                    SalaryRanges = SalaryRangesList(),
+                    JobExperiences = JobExperiencesList(),
+                    JobShifts = JobShiftsList(),
+                    JobLevels = JobLevelsList(),
+                };
+
+                return View(lists);
+            }
+
+            //Else process to add
             Job job = new()
             {
                 Title = input.Title,
+                Slug = slug,
                 Category = input.Category,
                 JobQualification = input.JobQualification,
                 JobType = input.JobType,
@@ -130,19 +154,18 @@ namespace JobPortal.Areas.Jobs.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
-
         }
 
         // GET: Jobs/JobsList/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Job == null)
             {
                 return NotFound();
             }
 
-            var jobsList = await _context.Job
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var jobsList = await _context.Job.FirstOrDefaultAsync(m => m.Id == id);
+
             if (jobsList == null)
             {
                 return NotFound();
@@ -266,7 +289,7 @@ namespace JobPortal.Areas.Jobs.Controllers
             }
         }
 
-        private bool JobsListExists(Guid id)
+        private bool JobsListExists(int id)
         {
             return (_context.Job?.Any(e => e.Id == id)).GetValueOrDefault();
         }
@@ -373,6 +396,32 @@ namespace JobPortal.Areas.Jobs.Controllers
                             }).ToList();
 
             return itemsList;
+        }
+        public string GetSlug(string Title)
+        {
+            //Slug helper
+            SlugHelper helper = new();
+
+            //Generate Slug for Job Post
+            var slug = helper.GenerateSlug(Title);
+
+            //Get last ID to concatenate in slug for uniqueness of slug
+            var id = _context.Job.OrderByDescending(a => a.Id).FirstOrDefault();
+
+            //concatenate id and slug
+            var finalSlug = slug + "-" + id.Id;
+
+            //Also re-check if final slug is already being used
+            var slugCheck = from s in _context.Job.Where(s => s.Slug == finalSlug) select s;
+
+            if (slugCheck.Any())
+            {
+                return null;
+            }
+            else
+            {
+                return finalSlug;
+            }
         }
     }
 }

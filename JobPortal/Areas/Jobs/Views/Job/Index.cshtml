@@ -17,6 +17,12 @@
     <div>
         <ul class="list-inline">
             <li class="list-inline-item">
+                @if(Context.Request.QueryString.HasValue == true)
+                {
+                    <a asp-action="Index" class="text-danger"><i class="bi bi-x-circle"></i> Clear Filter</a>
+                }
+            </li>
+            <li class="list-inline-item">
                 <button type="button" class="btn btn-outline-primary bg-primary-light" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-funnel"></i></button>
             </li>
             <li class="list-inline-item">
@@ -40,7 +46,7 @@
 
             <div class="modal-body">
 
-                <form asp-action="Index" method="get">
+                <form asp-action="Index" method="get" id="FilterForm">
 
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Job Category</label>
@@ -49,51 +55,52 @@
 
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Job Qualification</label>
-                        <select asp-for="JobQualification" asp-items="Model.JobQualifications" class="form-control selectpicker" data-live-search="true" title="Select..." ></select>
+                        <select asp-for="JobQualification" asp-items="Model.JobQualifications" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
                     </div>
 
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Job Experience</label>
-                        <select asp-for="JobExperience" asp-items="Model.JobExperiences"  class="form-control selectpicker" data-live-search="true" title="Select..." ></select>
+                        <select asp-for="JobExperience" asp-items="Model.JobExperiences" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
                     </div>
 
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Job Level</label>
-                        <select asp-for="JobLevel" asp-items="Model.JobLevels" class="form-control selectpicker" data-live-search="true" title="Select..." ></select>
+                        <select asp-for="JobLevel" asp-items="Model.JobLevels" class="form-control selectpicker" data-live-search="true" title="Select..."></select>
                     </div>
 
                     <div class="row">
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Posted Date From</label>
-                            <input type="date" name="PostedDateFrom" class="form-control DateTime" />
+                            <input type="date" onfocus="this.showPicker()" name="PostedDateFrom" class="form-control DateTime" />
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Posted Date To</label>
-                            <input type="date" name="PostedDateTo" class="form-control DateTime" />
+                            <input type="date" onfocus="this.showPicker()" name="PostedDateTo" class="form-control DateTime" />
                         </div>
 
                     </div>
 
                     <div class="mb-3">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="IsActive" id="inlineRadio1" value="true">
-                            <label class="form-check-label" for="inlineRadio1">Active</label>
+                            <input class="form-check-input" type="checkbox" name="IsActive" id="checkbox1" value="true">
+                            <label class="form-check-label" for="checkbox1">Active</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="UnPublished" id="inlineRadio2" value="true">
-                            <label class="form-check-label" for="inlineRadio2">Un-published</label>
+                            <input class="form-check-input" type="checkbox" name="NotPublished" id="checkbox2" value="true">
+                            <label class="form-check-label" for="checkbox2">Not Published</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="Expired" id="inlineRadio3" value="true">
-                            <label class="form-check-label" for="inlineRadio3">Expired</label>
+                            <input class="form-check-input" type="checkbox" name="Expired" id="checkbox3" value="true">
+                            <label class="form-check-label" for="checkbox3">Expired</label>
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Filter</button>
-
-                    <a asp-action="Index" class="px-3"><i class="bi bi-x-circle"></i> Clear Filter</a>
+                    <div class="d-flex justify-content-start">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                        <button type="button" class="btn nav-link reset-btn mx-2"><i class="bi bi-x-circle"></i> Clear </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -137,11 +144,18 @@
                             <td>
                                 @if (item.IsPublished == true)
                                 {
-                                    <span class="badge bg-success">Active</span>
+                                    @if (item.ExpireDate < DateTime.Today)
+                                    {
+                                        <span class="badge bg-warning">Expired</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">Active</span>
+                                    }
                                 }
                                 else
                                 {
-                                    <span class="badge bg-warning">Not Publised</span>
+                                    <span class="badge bg-info">Not Publised</span>
                                 }
                             </td>
                             <td class="text-center">
@@ -171,5 +185,12 @@
     </script>
     <script>
         document.getElementByClassName("DateTime").value = "";
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".reset-btn").click(function() {
+                $("#FilterForm").trigger("reset");
+            });
+        });
     </script>
 }
