@@ -2,4 +2,43 @@
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
     ViewData["Title"] = "Home";
 }
-Welcome !
+<div class="row base-search-wrap">
+    <div class="col-md-12 d-flex justify-content-center">
+        <div class="base-search" style="width: 600px;">
+            <div class="border shadow-sm overflow-hidden" style="border-radius: 20px;">
+                <form class="d-flex">
+                    <div class="flex-grow-1">
+                        <input type="text" class="bg-white" placeholder="Search with Job Title">
+                    </div>
+                    <div class="">
+                        <button type="submit" class="btn-primary"><i class="bi bi-search fs-5"></i></button>
+                    </div>
+                </form>
+            </div>
+            <div class="text-center my-3">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="" class="text-primary">Search by Category</a></li>
+                    <li class="list-inline-item"><a href="" class="text-primary">Search by Experience</a></li>
+                    <li class="list-inline-item"><a href="" class="text-primary">Search by Qualification</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="fixed-bottom base-footer border-top">
+    <div class="container d-flex justify-content-between pt-3">
+        <div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="" class="fst-normal pe-2">About Us</a> |</li>
+                <li class="list-inline-item"><a href="" class="fst-normal link-secondary pe-2">Terms & Conditions</a> |</li>
+                <li class="list-inline-item"><a href="" class="fst-normal link-secondary pe-2">Privacy Policy</a> |</li>
+                <li class="list-inline-item"><a href="" class="fst-normal link-secondary pe-2">Contact Us</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul class="list-inline">
+                <li class="list-inline-item link-secondary">&copy; Copyright to JobPortal</li>
+            </ul>
+        </div>
+    </div>
+</footer>

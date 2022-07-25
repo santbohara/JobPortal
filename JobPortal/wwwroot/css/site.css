@@ -15,6 +15,8 @@
 body {
     font-family: "Open Sans", sans-serif;
     background: #f8f9fa !important;
+    height: 100%;
+    font-size: 14px !important;
 }
 
 a {
@@ -27,10 +29,53 @@ a {
         text-decoration: none;
     }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Nunito", sans-serif;
+/*--------------------------------------------------------------
+# Base
+--------------------------------------------------------------*/
+#base {
+    background: #f5f5f5 !important;
 }
 
+    #base a {
+        color: #495057;
+        text-decoration: none;
+    }
+
+        #base a:hover {
+            color: #0d6efd;
+        }
+
+.base-search-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    min-height: 250px;
+}
+
+.base-search input[type="text"] {
+    height: 50px;
+    width: 100%;
+    padding: 15px;
+    border: 0;
+    border-radius: 0;
+}
+
+.base-search button {
+    height: 50px;
+    padding: 5px 20px;
+    border: 0;
+    border-radius: 0;
+}
+
+    .base-search input:focus,
+    .base-search button:focus {
+        outline: none;
+    }
+
+.base-footer {
+    background: #f5f5f5 !important;
+}
 /*--------------------------------------------------------------
 # Main
 --------------------------------------------------------------*/
@@ -70,10 +115,11 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 5px;
     margin: 15px 0;
 }
-.validation-summary-errors ul{
-    margin: 0px 5px;
 
-}
+    .validation-summary-errors ul {
+        margin: 0px 5px;
+    }
+
 .bootstrap-select {
     border: solid 1px #c3c3c3 !important;
 }
@@ -130,7 +176,7 @@ button, input, optgroup, select, textarea {
     border: 1px solid #c3c3c3;
 }
 
-.tox-statusbar__branding{
+.tox-statusbar__branding {
     visibility: hidden;
 }
 
@@ -281,7 +327,7 @@ button, input, optgroup, select, textarea {
     border-color: #d3d3d4;
 }
 
-.nav-tabs .nav-link{
+.nav-tabs .nav-link {
     margin-bottom: -3px !important;
 }
 /* Bordered Tabs */
@@ -309,11 +355,11 @@ button, input, optgroup, select, textarea {
     color: #575a7b !important;
 }
 
-.nav-pills .active{
+.nav-pills .active {
     color: #FFF !important;
 }
 
-.card-tab{
+.card-tab {
     border-top-left-radius: 0 !important;
     border-top-right-radius: 0 !important;
     border-top: 0 !important;
@@ -373,20 +419,22 @@ input.form-control, textarea.form-control, select.form-control {
     -o-transform: translate3d(0%, 0, 0);
     transform: translate3d(0%, 0, 0);
 }
-    .modal.right .modal-content {
-        height: 100%;
-        overflow-y: auto;
-        border-radius: 0;
-        border: none;
-    }
 
-    /*Right*/
-    .modal.right.fade .modal-dialog {
-        right: 0;
-    }
-    .modal.right.fade.in .modal-dialog {
-        right: 0 !important;
-    }
+.modal.right .modal-content {
+    height: 100%;
+    overflow-y: auto;
+    border-radius: 0;
+    border: none;
+}
+
+/*Right*/
+.modal.right.fade .modal-dialog {
+    right: 0;
+}
+
+.modal.right.fade.in .modal-dialog {
+    right: 0 !important;
+}
 
 /*--------------------------------------------------------------
 # Header
@@ -424,7 +472,8 @@ input.form-control, textarea.form-control, select.form-control {
     /* Toggle Sidebar Button */
     /* Search Bar */
 }
-.toggle-sidebar-btn{
+
+.toggle-sidebar-btn {
     cursor: pointer;
 }
 /*--------------------------------------------------------------
