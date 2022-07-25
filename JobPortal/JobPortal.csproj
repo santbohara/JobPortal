@@ -26,7 +26,6 @@
     <Folder Include="Areas\Jobs\Helper\" />
     <Folder Include="Areas\Users\Data\" />
     <Folder Include="Areas\Users\Models\" />
-    <Folder Include="Helper\" />
     <Folder Include="wwwroot\static\" />
   </ItemGroup>
 

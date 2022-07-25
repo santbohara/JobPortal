@@ -20,9 +20,10 @@
     <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="~/lib/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="~/lib/jquery-confirm/jquery-confirm.min.css">
+    <link rel="stylesheet" href="~/lib/jquery-toast-plugin/jquery.toast.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
-    <script src="~/lib/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
 
@@ -36,7 +37,7 @@
             <i class="bi bi-list fs-3 toggle-sidebar-btn"></i>
         </div>
         <!-- End Logo -->
-        
+
         <div class="px-4">
             @*<a asp-area="Jobs" asp-controller="Job" asp-action="Add" class="btn btn-success">Post a Job</a>*@
         </div>
@@ -48,8 +49,8 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        
-                         @if (String.IsNullOrEmpty(ProfilePictureUrl) || ProfilePictureUrl == null)
+
+                        @if (String.IsNullOrEmpty(ProfilePictureUrl) || ProfilePictureUrl == null)
                         {
                             <img src="~/static/default-img.jpg" class="rounded-circle border" style="width:36px; height:36px;">
                         }
@@ -103,13 +104,11 @@
 
     </header>
     <!-- End Header -->
-
     <!-- ======= Sidebar ======= -->
 
     <partial name="_SideBar" />
 
     <!-- End Sidebar-->
-
     <!-- ======= Main ======= -->
     <main id="main" class="main">
 
@@ -146,6 +145,15 @@
 <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
 <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 <script src="~/lib/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="~/lib/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="~/clipboard.js/clipboard.min.js"></script>
+<script src="/lib/jquery-confirm/jquery-confirm.min.js"></script>
+<script src="~/lib/jquery-toast-plugin/jquery.toast.min.js"></script>
 <script src="~/js/site.js"></script>
 @await RenderSectionAsync("Scripts", required: false)
+<script>
+    tinymce.init({
+        selector: 'textarea.editor'
+    });
+</script>
 </html>

@@ -1,4 +1,5 @@
-﻿@model JobPortal.Areas.Jobs.ViewModel.IndexViewModel
+﻿@using JobPortal.Helper
+@model JobPortal.Areas.Jobs.ViewModel.IndexViewModel
 
 @{
     ViewData["Title"] = "Jobs";
@@ -17,7 +18,7 @@
     <div>
         <ul class="list-inline">
             <li class="list-inline-item">
-                @if(Context.Request.QueryString.HasValue == true)
+                @if (Context.Request.QueryString.HasValue == true)
                 {
                     <a asp-action="Index" class="text-danger"><i class="bi bi-x-circle"></i> Clear Filter</a>
                 }
@@ -159,7 +160,7 @@
                                 }
                             </td>
                             <td class="text-center">
-                                <a href=""><i class="fs-5 bi bi-clipboard-check text-primary text-hover-success" title="Copy Link"></i></a>
+                                <a href="#" class="clipboard-button" data-clipboard-text="@ViewData["BaseUrl"]/apply/@item.Slug"><i class="fs-5 bi bi-clipboard-check text-primary text-hover-success" title="Copy Link"></i></a>
                                 <a asp-action="Edit" asp-route-id="@item.Id"><i class="fs-5 bi bi-pencil-square text-primary text-hover-success" title="Edit"></i></a>
                                 <a asp-action="Details" asp-route-id="@item.Id"><i class="fs-5 bi bi-info-square text-primary text-hover-success" title="View"></i></a>
                             </td>
@@ -191,6 +192,18 @@
             $(".reset-btn").click(function() {
                 $("#FilterForm").trigger("reset");
             });
+        });
+    </script>
+    <script>
+        var clipboard = new ClipboardJS('.clipboard-button');
+        clipboard.on('success', function(e) {
+            $.toast({
+                text: 'Link copied to clipboard!',
+                position: 'bottom-right',
+                icon: 'success',
+                showHideTransition: 'slide',
+                stack: 2
+            })
         });
     </script>
 }

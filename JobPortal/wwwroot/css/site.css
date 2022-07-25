@@ -281,6 +281,9 @@ button, input, optgroup, select, textarea {
     border-color: #d3d3d4;
 }
 
+.nav-tabs .nav-link{
+    margin-bottom: -3px !important;
+}
 /* Bordered Tabs */
 .nav-tabs-bordered {
     border-bottom: 2px solid #ebeef4;
@@ -301,22 +304,61 @@ button, input, optgroup, select, textarea {
             color: #4154f1;
             border-bottom: 2px solid #4154f1;
         }
+
 .nav-pills a {
     color: #575a7b !important;
 }
+
 .nav-pills .active{
     color: #FFF !important;
 }
 
+.card-tab{
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-top: 0 !important;
+}
+
 input.form-control, textarea.form-control, select.form-control {
-/*    border: solid 1px #1e9853 !important;*/
-/*    background-color: #e9f7ef !important;*/
+    /*    border: solid 1px #1e9853 !important;*/
+    /*    background-color: #e9f7ef !important;*/
     transition: all 100ms ease !important;
 }
 
 .tox-toolbar__primary {
     background-position: center top 0 !important;
 }
+
+
+/* Visible in Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+    .border-xs {
+        border: 1px solid rgba(0,0,0,.125) !important;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+    .border-sm {
+        border: 1px solid rgba(0,0,0,.125) !important;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+    .border-md {
+        border: 1px solid rgba(0,0,0,.125) !important;
+    }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+    .border-lg {
+        border: 1px solid rgba(0,0,0,.125) !important;
+    }
+}
+
+
 /*--------------------------------------------------------------
 # Model Left or Right
 --------------------------------------------------------------*/

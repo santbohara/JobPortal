@@ -60,6 +60,7 @@ namespace JobPortal.Data
         public DbSet<JobExperience> JobExperience { get; set; }
         public DbSet<JobShift> JobShift { get; set; }
         public DbSet<JobLevel> JobLevel { get; set; }
+        public DbSet<Apply> JobApplication { get; set; }
 
     }
 }

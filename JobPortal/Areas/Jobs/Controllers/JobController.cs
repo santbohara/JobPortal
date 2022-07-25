@@ -61,6 +61,7 @@ namespace JobPortal.Areas.Jobs.Controllers
                 JobList = filter.ToList()
             };
 
+            ViewData["BaseUrl"] = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}";
             return View(lists);
         }
 
@@ -107,7 +108,7 @@ namespace JobPortal.Areas.Jobs.Controllers
             //Get Slug
             var slug = GetSlug(input.Title);
 
-            if(slug == null)
+            if (slug == null)
             {
                 TempData["Danger"] = "Slug already used, try with new Job Title";
 
@@ -157,25 +158,54 @@ namespace JobPortal.Areas.Jobs.Controllers
         }
 
         // GET: Jobs/JobsList/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null || _context.Job == null)
             {
-                return NotFound();
+                return Problem(id.ToString());
             }
 
-            var jobsList = await _context.Job.FirstOrDefaultAsync(m => m.Id == id);
+            var result = (from j in _context.Job
+                          join jc in _context.JobCategory on j.Category equals jc.Id.ToString()
+                          join jq in _context.JobQualification on j.JobQualification equals jq.Id.ToString()
+                          join jt in _context.JobType on j.JobType equals jt.Id.ToString()
+                          join st in _context.SalaryType on j.SalaryType equals st.Id.ToString()
+                          join sr in _context.SalaryRange on j.SalaryRange equals sr.Id.ToString()
+                          join je in _context.JobExperience on j.JobExperience equals je.Id.ToString()
+                          join js in _context.JobShift on j.JobShift equals js.Id.ToString()
+                          join jl in _context.JobLevel on j.JobLevel equals jl.Id.ToString()
+                          where j.Id == id
+                          select new JobViewModel
+                          {
+                              Title = j.Title,
+                              Slug = j.Slug,
+                              IsPublished = j.IsPublished,
+                              ExpireDate = j.ExpireDate,
+                              CreatedBy = j.CreatedBy,
+                              CreatedAt = j.CreatedAt,
+                              JobDescription = j.JobDescription,
+                              JobSpecification = j.JobSpecification,
+                              Category = jc.Title,
+                              JobQualification = jq.Title,
+                              JobType = jt.Title,
+                              SalaryType = st.Title,
+                              SalaryRange = sr.Title,
+                              JobExperience = je.Title,
+                              JobShift = js.Title,
+                              JobLevel = jl.Title
+                          }).FirstOrDefault();
 
-            if (jobsList == null)
+            if (result == null)
             {
-                return NotFound();
+                return Problem(id.ToString());
             }
 
-            return View(jobsList);
+            ViewData["BaseUrl"] = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}";
+            return View(result);
         }
 
         // GET: Jobs/JobsList/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Job == null)
             {
@@ -411,7 +441,7 @@ namespace JobPortal.Areas.Jobs.Controllers
             var lastId = _context.Job.OrderByDescending(a => a.Id).FirstOrDefault();
 
             //concatenate id and slug
-            if(lastId == null)
+            if (lastId == null)
             {
                 finalSlug = slug;
             }
