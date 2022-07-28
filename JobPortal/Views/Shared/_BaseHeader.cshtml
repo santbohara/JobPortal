@@ -1,0 +1,42 @@
+﻿<!-- ======= Header ======= -->
+<header class="container-fluid border-bottom bg-white mb-4 py-2">
+
+    <div class="container">
+
+        <div class="d-flex">
+
+            <div class="p-2 flex-grow-1">
+
+                <div class="d-flex">
+
+                    <div class="pt-3 pe-4">
+                        <a href="/">
+                            <img src="~/static/logoSmall.png" style="max-width: 150px; max-height: 150px;" />
+                        </a>
+                    </div>
+
+                    <div class="flex-grow-1 base-search" style="max-width:500px;">
+                        <div class="border shadow-sm overflow-hidden" style="border-radius: 20px;">
+                            <form class="d-flex">
+                                <div class="flex-grow-1">
+                                    <input type="text" class="bg-white" placeholder="Search with Job Title">
+                                </div>
+                                <div class="">
+                                    <button type="submit" class="btn-primary"><i class="bi bi-search fs-5"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="py-3">
+                <div class="flex-fill">
+                    <a asp-area="" asp-controller="account" asp-action="login" class="btn btn-sm btn-success text-white px-3">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!-- End Header -->

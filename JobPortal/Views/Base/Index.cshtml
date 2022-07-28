@@ -2,6 +2,30 @@
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
     ViewData["Title"] = "Home";
 }
+<!-- ======= Header ======= -->
+<header class="container d-flex justify-content-between py-3">
+
+    <div class="">
+        <a href="/">
+            <img src="~/static/logoSmall.png" style="max-width: 150px; max-height: 150px;" />
+        </a>
+    </div>
+
+    <div class="d-flex">
+        <div class="ps-4 pt-1 flex-fill">
+            <a href="#" class="d-block pt-1 text-primary">Employer</a>
+        </div>
+        <div class="ps-4 flex-fill">
+            <a href="#"><i class="fs-4 text-secondary bi bi-grid-3x3-gap-fill"></i></a>
+        </div>
+        <div class="ps-4 flex-fill">
+            <a asp-area="" asp-controller="account" asp-action="login" class="btn btn-sm btn-success text-white px-3">Login</a>
+        </div>
+    </div>
+
+</header>
+<!-- End Header -->
+
 <div class="row base-search-wrap">
     <div class="col-md-12 d-flex justify-content-center">
         <div class="base-search" style="width: 600px;">

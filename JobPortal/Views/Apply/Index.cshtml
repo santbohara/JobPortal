@@ -2,7 +2,33 @@
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
     ViewData["Title"] = "Apply Job";
 }
+<partial name="_BaseHeader"></partial>
 
-<hr />
+<div class="container">
 
-@Model.Title
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">Apply</li>
+        </ol>
+    </nav>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="">
+                <h4 class="text-primary fw-bold"><i class="bi bi-briefcase"></i> @Model.Title</h4>
+            </div>
+            <div class="border p-2">
+                <ul>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="">
+                aaa
+            </div>
+        </div>
+    </div>
+</div>
