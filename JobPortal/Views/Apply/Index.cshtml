@@ -13,21 +13,123 @@
         </ol>
     </nav>
 
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <div class="">
-                <h4 class="text-primary fw-bold"><i class="bi bi-briefcase"></i> @Model.Title</h4>
-            </div>
-            <div class="border p-2">
-                <ul>
+    <div class="row my-4">
 
+        <div class="col-md-12">
+
+            <div class="">
+
+                <h4 class="text-primary fw-bold">@Model.Title</h4>
+                <ul class="list-inline">
+                    <li class="list-inline-item pe-2"> <i class="fa-solid fa-folder-open"></i> @Model.Category</li>
+                    <li class="list-inline-item pe-2"> <i class="fa-solid fa-hand-point-right"></i> @Model.JobType</li>
+                    <li class="list-inline-item pe-2"> <i class="fa-solid fa-clock"></i> @Model.CreatedAt</li>
                 </ul>
             </div>
         </div>
+    </div>
 
-        <div class="col-md-6 mb-3">
+    <div class="row">
+
+        <div class="col-md-10">
+
+            <div class="card shadow-sm mb-3">
+
+                <div class="card-body p-4">
+
+                    <h4>Job Information</h4>
+
+                    <div class="row mt-3">
+
+                        <div class="col-md-4 mt-2 d-flex justify-content-start">
+                            <div class="pe-3 text-success">
+                                <i class="bi bi-check2-square fs-3"></i>
+                            </div>
+                            <div>
+                                <h6 class="m-0 fw-bold">Job Experience</h6>
+                                <small>@Model.JobExperience</small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mt-2 d-flex justify-content-start">
+                            <div class="pe-3 text-success">
+                                <i class="bi bi-check2-square fs-3"></i>
+                            </div>
+                            <div>
+                                <h6 class="m-0 fw-bold">Job Shift</h6>
+                                <small>@Model.JobShift</small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mt-2 d-flex justify-content-start">
+                            <div class="pe-3 text-success">
+                                <i class="bi bi-check2-square fs-3"></i>
+                            </div>
+                            <div>
+                                <h6 class="m-0 fw-bold">Job Level</h6>
+                                <small>@Model.JobLevel</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+
+                        <div class="col-md-4 mt-2 d-flex justify-content-start">
+                            <div class="pe-3 text-success">
+                                <i class="bi bi-check2-square fs-3"></i>
+                            </div>
+                            <div>
+                                <h6 class="m-0 fw-bold">Job Qualification</h6>
+                                <small>@Model.JobQualification</small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mt-2 d-flex justify-content-start">
+                            <div class="pe-3 text-success">
+                                <i class="bi bi-check2-square fs-3"></i>
+                            </div>
+                            <div>
+                                <h6 class="m-0 fw-bold">Salary Type</h6>
+                                <small>@Model.SalaryType</small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mt-2 d-flex justify-content-start">
+                            <div class="pe-3 text-success">
+                                <i class="bi bi-check2-square fs-3"></i>
+                            </div>
+                            <div>
+                                <h6 class="m-0 fw-bold">Salary Range</h6>
+                                <small>@Model.SalaryRange</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-3">
+                <div class="card-body p-4">
+
+                    <h4>Job Description</h4>
+
+                    @Html.Raw(HttpUtility.HtmlDecode(Model.JobDescription))
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-3">
+                <div class="card-body p-4">
+
+                    <h4>Job Specification</h4>
+
+                    @Html.Raw(HttpUtility.HtmlDecode(Model.JobSpecification))
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+
             <div class="">
-                aaa
+                <button class="btn btn-success w-100">Apply Now</button>
             </div>
         </div>
     </div>
